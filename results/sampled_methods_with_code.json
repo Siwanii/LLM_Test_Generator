@@ -1,0 +1,82 @@
+[
+  {
+    "source_file": "cinder/volume/drivers/emc/vnx/client.py",
+    "method_name": "add_image",
+    "start_line": 539,
+    "end_line": 545,
+    "method_code": "def add_image(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "everycheese/users/models.py",
+    "method_name": "get_absolute_url",
+    "start_line": 17,
+    "end_line": 20,
+    "method_code": "def get_absolute_url(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "gs/group/start/groupcreator.py",
+    "method_name": "set_group_privacy",
+    "start_line": 223,
+    "end_line": 242,
+    "method_code": "def set_group_privacy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "glean_parser/csharp.py",
+    "method_name": "type_name",
+    "start_line": 74,
+    "end_line": 92,
+    "method_code": "def type_name(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "w3af/core/controllers/csp/utils.py",
+    "method_name": "find_vulns",
+    "start_line": 118,
+    "end_line": 346,
+    "method_code": "def find_vulns(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv/Lib/site-packages/numpy/ma/core.py",
+    "method_name": "std",
+    "start_line": 5363,
+    "end_line": 5385,
+    "method_code": "def std(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "dockerfiles/docker-compose/compose/service.py",
+    "method_name": "create_container",
+    "start_line": 255,
+    "end_line": 279,
+    "method_code": "def create_container(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "keras/keras/engine/saving.py",
+    "method_name": "preprocess_weights_for_loading",
+    "start_line": 771,
+    "end_line": 989,
+    "method_code": "def preprocess_weights_for_loading(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "src/gevent/subprocess.py",
+    "method_name": "communicate",
+    "start_line": 957,
+    "end_line": 1020,
+    "method_code": "def communicate(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "ansible/ansible_tool/lib/ansible/plugins/inventory/linode.py",
+    "method_name": "_validate_option",
+    "start_line": 144,
+    "end_line": 159,
+    "method_code": "def _validate_option(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  }
+]

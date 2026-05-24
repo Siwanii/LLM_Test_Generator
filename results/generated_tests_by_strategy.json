@@ -1,0 +1,425 @@
+[
+  {
+    "method_name": "add_image",
+    "method_code": "def add_image(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "0,0",
+      "-1,-2",
+      "1000000,1000000"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'add_image'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['0,0', '-1,-2', '1000000,1000000']\n",
+    "generated_test": "Here are the pytest unit tests for the `add_image` function:\n```\nimport pytest\nfrom your_module import add_image  # replace with the actual module name\n\ndef test_add_image():\n    # Normal case\n    result = add_image(1, 2)\n    assert result == 3\n\n    # Edge cases\n    result = add_image(0, 0)\n    assert result == 0\n    result = add_image(-1, -2)\n    assert result == -3\n    result = add_image(1000000, 1000000)\n    assert result == 2000000\n\n    # Boundary cases\n    result = add_image(0, 1)\n    assert result == 1\n    result = add_image(1, 0)\n    assert result == 1\n    result = add_image(-1, 1)\n    assert result == 0\n    result = add_image(1, -1)\n    assert result == 0\n\n    # Error cases\n    with pytest.raises(TypeError):\n        add_image('a', 2)\n    with pytest.raises(TypeError):\n        add_image(1, 'b')\n    with pytest.raises(TypeError):\n        add_image('a', 'b')\n```\nNote that I've assumed the `add_image` function takes two integer arguments and returns their sum. If that's not the case, you'll need to modify the tests accordingly."
+  },
+  {
+    "method_name": "add_image",
+    "method_code": "def add_image(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "0,0",
+      "-1,-2",
+      "1000000,1000000"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef add_image(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['0,0', '-1,-2', '1000000,1000000']\n",
+    "generated_test": "Here are the pytest unit tests for the `add_image` function:\n```python\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ((), {}, None),  # normal case\n    ((0, 0), {}, 0),  # zero inputs\n    ((-1, -2), {}, -3),  # negative inputs\n    ((0, 0), {\"foo\": \"bar\"}, None),  # empty inputs with kwargs\n    ((\"\", \"\"), {\"foo\": \"bar\"}, None),  # empty string inputs\n    (\"abc\", {\"foo\": \"bar\"}, None),  # invalid inputs (strings)\n    ((1000000, 1000000), {}, 2000000),  # large inputs\n])\ndef test_add_image(args, kwargs, expected):\n    result = add_image(*args, **kwargs)\n    assert result == expected\n\ndef test_add_image_invalid_input():\n    with pytest.raises(TypeError):\n        add_image(\"abc\", 123)\n\ndef test_add_image_invalid_kwargs():\n    with pytest.raises(TypeError):\n        add_image(1, 2, foo=\"bar\", baz=\"qux\")\n```\nNote that I've used `parametrize` to test multiple normal cases and edge cases, and separate test functions for invalid input cases."
+  },
+  {
+    "method_name": "add_image",
+    "method_code": "def add_image(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "0,0",
+      "-1,-2",
+      "1000000,1000000"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import add_image\n\nFUNCTION NAME: add_image\n\nFUNCTION CODE:\ndef add_image(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['0,0', '-1,-2', '1000000,1000000']\n",
+    "generated_test": "Here is a valid Python file containing pytest tests for the `add_image` function:\n```\n# tests/test_add_image.py\nfrom focal_module import add_image\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    (['0', '0'], {}, None),\n    (['-1', '-2'], {}, None),\n    (['1000000', '1000000'], {}, None),\n])\ndef test_add_image(args, kwargs, expected):\n    result = add_image(*args, **kwargs)\n    assert result == expected\n```"
+  },
+  {
+    "method_name": "get_absolute_url",
+    "method_code": "def get_absolute_url(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'get_absolute_url'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the function `get_absolute_url`:\n```\nimport pytest\nfrom your_module import get_absolute_url\n\ndef test_get_absolute_url():\n    # Normal case\n    url = \"https://example.com/path\"\n    assert get_absolute_url(url) == \"https://example.com/path\"\n\n    # Edge case: None\n    url = None\n    with pytest.raises(ValueError):\n        get_absolute_url(url)\n\n    # Edge case: 0\n    url = 0\n    with pytest.raises(TypeError):\n        get_absolute_url(url)\n\n    # Boundary case: empty string\n    url = \"\"\n    with pytest.raises(ValueError):\n        get_absolute_url(url)\n\n    # Boundary case: whitespace only\n    url = \"   \"\n    with pytest.raises(ValueError):\n        get_absolute_url(url)\n\n    # Test with a URL that has a query string\n    url = \"https://example.com/path?param=value\"\n    assert get_absolute_url(url) == \"https://example.com/path?param=value\"\n\n    # Test with a URL that has a fragment\n    url = \"https://example.com/path#anchor\"\n    assert get_absolute_url(url) == \"https://example.com/path#anchor\"\n```\nNote that I've included multiple assertions, edge cases, and boundary cases to ensure that the function is thoroughly tested. I've also used pytest's built-in `assert` statement and `with` block to test for expected exceptions."
+  },
+  {
+    "method_name": "get_absolute_url",
+    "method_code": "def get_absolute_url(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef get_absolute_url(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `get_absolute_url` function:\n```\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([], {}, None),  # normal case\n    ([1], {}, None),  # normal case\n    ([], {\"key\": \"value\"}, None),  # normal case\n    ([], {\"key\": None}, None),  # normal case\n    ([0], {}, None),  # zero input\n    ([-1], {}, None),  # negative input\n    ([], {\"key\": \"\"}, None),  # empty input\n    ([], {\"key\": \"invalid\"}, None),  # invalid input\n    ([1, 2], {}, None),  # boundary case\n    ([1000], {}, None),  # large input\n])\ndef test_get_absolute_url(args, kwargs, expected):\n    assert get_absolute_url(*args, **kwargs) == expected\n\ndef test_get_absolute_url_none_input():\n    assert get_absolute_url(*[None], **{\"key\": None}) == None\n\ndef test_get_absolute_url_zero_input():\n    assert get_absolute_url(*[0], **{\"key\": \"value\"}) == None\n\ndef test_get_absolute_url_negative_input():\n    assert get_absolute_url(*[-1], **{\"key\": \"value\"}) == None\n```\nNote that I've used `parametrize` to test various normal cases, as well as edge cases such as zero, negative, empty, and invalid inputs. I've also included tests for boundary and large inputs. Additionally, I've written separate tests for the specific edge cases mentioned in the requirements."
+  },
+  {
+    "method_name": "get_absolute_url",
+    "method_code": "def get_absolute_url(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import get_absolute_url\n\nFUNCTION NAME: get_absolute_url\n\nFUNCTION CODE:\ndef get_absolute_url(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# tests/test_focal_module.py\nimport pytest\nfrom focal_module import get_absolute_url\n\ndef test_get_absolute_url():\n    assert get_absolute_url() is None\n\n@pytest.mark.parametrize(\"input_value\", [None, 0])\ndef test_get_absolute_url_edge_cases(input_value):\n    assert get_absolute_url(input_value) is None\n```"
+  },
+  {
+    "method_name": "set_group_privacy",
+    "method_code": "def set_group_privacy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'set_group_privacy'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the function `set_group_privacy`:\n```\nimport pytest\nfrom your_module import set_group_privacy\n\ndef test_set_group_privacy():\n    # Normal case\n    assert set_group_privacy(\"public\") == \"public\"\n    assert set_group_privacy(\"private\") == \"private\"\n    assert set_group_privacy(\"friends\") == \"friends\"\n\n    # Edge cases\n    assert set_group_privacy(None) == \"public\"  # default to public\n    assert set_group_privacy(0) == \"public\"  # default to public\n    assert set_group_privacy(\"invalid\") == \"public\"  # default to public for invalid input\n\n    # Boundary cases\n    assert set_group_privacy(\"\") == \"public\"  # empty string defaults to public\n    assert set_group_privacy(\"   \") == \"public\"  # whitespace defaults to public\n    assert set_group_privacy(\"public \") == \"public\"  # trailing whitespace defaults to public\n    assert set_group_privacy(\"public\\n\") == \"public\"  # newline defaults to public\n    assert set_group_privacy(\"public\\r\") == \"public\"  # carriage return defaults to public\n    assert set_group_privacy(\"public\\r\\n\") == \"public\"  # newline and carriage return defaults to public\n```\nNote that I've included multiple assertions to cover various scenarios, including normal cases, edge cases, and boundary cases. The edge cases include `None`, `0`, and an invalid input string, while the boundary cases include empty strings, whitespace, and newline characters."
+  },
+  {
+    "method_name": "set_group_privacy",
+    "method_code": "def set_group_privacy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef set_group_privacy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `set_group_privacy` function:\n```python\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([], {}, None),  # normal case\n    ([1], {}, 1),  # normal case\n    ([], {\"key\": \"value\"}, None),  # normal case\n    ([1, 2], {\"key\": \"value\"}, None),  # normal case\n    ([], {\"key\": None}, None),  # normal case\n    ([], {\"key\": 0}, None),  # normal case\n    ([], {\"key\": \"None\"}, None),  # normal case\n    ([], {\"key\": \"0\"}, None),  # normal case\n])\ndef test_set_group_privacy_normal(args, kwargs, expected):\n    result = set_group_privacy(*args, **kwargs)\n    assert result == expected\n\n@pytest.mark.parametrize(\"args, kwargs\", [\n    ([], {\"key\": \"value\", \"invalid\": \"input\"}),  # invalid input\n    ([1, 2], {\"key\": \"value\", \"invalid\": \"input\"}),  # invalid input\n    ([], {\"key\": None, \"invalid\": \"input\"}),  # invalid input\n    ([], {\"key\": 0, \"invalid\": \"input\"}),  # invalid input\n    ([], {\"key\": \"None\", \"invalid\": \"input\"}),  # invalid input\n    ([], {\"key\": \"0\", \"invalid\": \"input\"}),  # invalid input\n])\ndef test_set_group_privacy_invalid_input(args, kwargs):\n    with pytest.raises(TypeError):\n        set_group_privacy(*args, **kwargs)\n\n@pytest.mark.parametrize(\"args\", [\n    ([0],),  # zero input\n    ([-1],),  # negative input\n    ([\"\"],),  # empty input\n    ([\"a\", \"b\"],),  # multiple inputs\n    ([\"a\", None],),  # mixed inputs\n])\ndef test_set_group_privacy_edge_cases(args):\n    result = set_group_privacy(*args)\n    assert result is None\n```\nNote that I've used `parametrize` to test various normal and edge cases, and also tested for invalid inputs. The `test_set_group_privacy_edge_cases` function tests for specific edge cases where applicable."
+  },
+  {
+    "method_name": "set_group_privacy",
+    "method_code": "def set_group_privacy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import set_group_privacy\n\nFUNCTION NAME: set_group_privacy\n\nFUNCTION CODE:\ndef set_group_privacy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# tests/test_focal_module.py\nimport pytest\nfrom focal_module import set_group_privacy\n\ndef test_set_group_privacy():\n    assert set_group_privacy() is None\n\n@pytest.mark.parametrize(\"input_value\", [None, 0])\ndef test_set_group_privacy_edge_cases(input_value):\n    assert set_group_privacy(input_value) is None\n```"
+  },
+  {
+    "method_name": "type_name",
+    "method_code": "def type_name(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'type_name'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the function 'type_name':\n\n```\nimport pytest\n\ndef type_name(obj):\n    # implementation of type_name function\n    pass\n\n@pytest.mark.parametrize(\"input_value, expected_output\", [\n    (\"int\", \"int\"),\n    (\"str\", \"str\"),\n    (\"float\", \"float\"),\n    (\"bool\", \"bool\"),\n    (\"list\", \"list\"),\n    (\"dict\", \"dict\"),\n    (\"None\", \"None\"),\n    (\"0\", \"int\"),\n    (\"1\", \"int\"),\n    (\"True\", \"bool\"),\n    (\"False\", \"bool\"),\n    (\"hello\", \"str\"),\n    (\"[1, 2, 3]\", \"list\"),\n    (\"{'a': 1, 'b': 2}\", \"dict\"),\n])\ndef test_type_name(input_value, expected_output):\n    assert type_name(input_value) == expected_output\n\ndef test_type_name_edge_cases():\n    assert type_name(None) == \"None\"\n    assert type_name(0) == \"int\"\n    assert type_name(1) == \"int\"\n    assert type_name(True) == \"bool\"\n    assert type_name(False) == \"bool\"\n    assert type_name(\"hello\") == \"str\"\n    assert type_name([1, 2, 3]) == \"list\"\n    assert type_name({\"a\": 1, \"b\": 2}) == \"dict\"\n```"
+  },
+  {
+    "method_name": "type_name",
+    "method_code": "def type_name(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef type_name(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `type_name` function:\n```\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([], {}, None),  # normal case: no inputs\n    ([1, 2, 3], {}, None),  # normal case: multiple inputs\n    ([], {\"a\": 1, \"b\": 2}, None),  # normal case: keyword inputs\n    ([], {\"a\": 1}, None),  # normal case: single keyword input\n])\ndef test_type_name_normal(args, kwargs, expected):\n    assert type_name(*args, **kwargs) == expected\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([0], {}, None),  # edge case: zero inputs\n    ([-1, -2, -3], {}, None),  # edge case: negative inputs\n    ([], {\"a\": 0, \"b\": 0}, None),  # edge case: zero keyword inputs\n    ([], {\"a\": -1, \"b\": -2}, None),  # edge case: negative keyword inputs\n    ([], {\"a\": None}, None),  # edge case: None keyword input\n])\ndef test_type_name_edge_zero_negative(args, kwargs, expected):\n    assert type_name(*args, **kwargs) == expected\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([], {}),  # edge case: empty inputs\n    ([], {\"a\": \"\"}),  # edge case: empty keyword input\n])\ndef test_type_name_edge_empty(args, kwargs, expected):\n    assert type_name(*args, **kwargs) == expected\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([\"a\"], {\"b\": \"c\"}),  # edge case: invalid inputs (strings)\n    ([\"a\", 2], {\"b\": \"c\"}),  # edge case: invalid inputs (mixed types)\n])\ndef test_type_name_edge_invalid(args, kwargs, expected):\n    with pytest.raises(TypeError):\n        type_name(*args, **kwargs)\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([1], {\"a\": 1}),  # boundary case: single input\n    ([1, 2], {\"a\": 1}),  # boundary case: multiple inputs\n    ([], {\"a\": 1, \"b\": 2}),  # boundary case: multiple keyword inputs\n])\ndef test_type_name_boundary(args, kwargs, expected):\n    assert type_name(*args, **kwargs) == expected\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([1000], {}),  # large input\n    ([1000, 2000], {}),  # large multiple inputs\n    ([], {\"a\": 1000, \"b\": 2000}),  # large keyword inputs\n])\ndef test_type_name_large(args, kwargs, expected):\n    assert type_name(*args, **kwargs) == expected\n```\nNote that I've used `parametrize` to test various edge cases, and also included tests for normal cases, boundary cases, and large inputs."
+  },
+  {
+    "method_name": "type_name",
+    "method_code": "def type_name(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import type_name\n\nFUNCTION NAME: type_name\n\nFUNCTION CODE:\ndef type_name(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here is a valid Python file containing pytest tests for the `type_name` function:\n```\n# tests/test_type_name.py\nfrom focal_module import type_name\nimport pytest\n\ndef test_type_name():\n    assert type_name() is None\n\ndef test_type_name_args():\n    assert type_name(None) is None\n    assert type_name(0) is None\n\ndef test_type_name_kwargs():\n    assert type_name(**{'key': None}) is None\n    assert type_name(**{'key': 0}) is None\n\ndef test_type_name_mixed():\n    assert type_name(None, 0) is None\n    assert type_name(0, None) is None\n    assert type_name(None, **{'key': 0}) is None\n    assert type_name(0, **{'key': None}) is None\n```\nNote that this file is named `test_type_name.py` and is located in a directory named `tests`. The tests are defined as separate functions, each with a descriptive name. The `pytest` framework is used to run the tests."
+  },
+  {
+    "method_name": "find_vulns",
+    "method_code": "def find_vulns(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'find_vulns'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `find_vulns` function:\n```\nimport pytest\nfrom your_module import find_vulns  # replace with actual module name\n\ndef test_find_vulns():\n    # Test with valid input\n    vulns = find_vulns([\"A\", \"B\", \"C\"])\n    assert vulns == [\"A\", \"B\", \"C\"]\n    assert len(vulns) == 3\n\n    # Test with None input\n    vulns = find_vulns(None)\n    assert vulns is None\n\n    # Test with 0 input\n    vulns = find_vulns(0)\n    assert vulns == []\n\n    # Test with empty input\n    vulns = find_vulns([])\n    assert vulns == []\n\n    # Test with mixed input\n    vulns = find_vulns([\"A\", None, \"C\"])\n    assert vulns == [\"A\", \"C\"]\n\n    # Test with edge case: single element input\n    vulns = find_vulns([\"A\"])\n    assert vulns == [\"A\"]\n\n    # Test with boundary case: very large input\n    vulns = find_vulns(list(range(1000)))\n    assert len(vulns) == 1000\n```\nNote that I've included multiple assertions to cover different scenarios, including edge cases like `None`, `0`, and empty input. I've also tested with valid input and boundary cases like very large input."
+  },
+  {
+    "method_name": "find_vulns",
+    "method_code": "def find_vulns(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef find_vulns(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `find_vulns` function:\n```python\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ((), {}, None),  # normal case\n    (['test'], {}, None),  # normal case with args\n    ((), {'test': 'test'}, None),  # normal case with kwargs\n    (0, {}, None),  # zero input\n    (-1, {}, None),  # negative input\n    ([], {}, None),  # empty input\n    (['test', 'test'], {}, None),  # multiple args\n    ((), {'test': None}, None),  # None as kwargs value\n    ((), {'test': 0}, None),  # zero as kwargs value\n    ((), {'test': -1}, None),  # negative as kwargs value\n])\ndef test_find_vulns_normal(args, kwargs, expected):\n    assert find_vulns(*args, **kwargs) == expected\n\n@pytest.mark.parametrize(\"args, kwargs\", [\n    ([], {'test': 'test'}),  # invalid args\n    (['test'], {'test': None}),  # invalid kwargs\n    (['test', 'test'], {'test': 0}),  # multiple args and kwargs\n])\ndef test_find_vulns_invalid(args, kwargs):\n    with pytest.raises(TypeError):\n        find_vulns(*args, **kwargs)\n\n@pytest.mark.parametrize(\"args, kwargs\", [\n    (['test', 'test', 'test'], {}),  # large input\n    (['test'], {'test': 'test', 'test2': 'test2'}),  # large input with kwargs\n])\ndef test_find_vulns_large(args, kwargs):\n    find_vulns(*args, **kwargs)  # no assertion, just test that it doesn't raise an error\n```\nNote that I've used `parametrize` to test multiple inputs with the same expected output, and separate test functions for normal cases, edge cases, and invalid inputs. I've also included tests for large inputs to ensure that the function doesn't raise an error with large inputs."
+  },
+  {
+    "method_name": "find_vulns",
+    "method_code": "def find_vulns(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import find_vulns\n\nFUNCTION NAME: find_vulns\n\nFUNCTION CODE:\ndef find_vulns(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# tests/test_focal_module.py\nimport pytest\nfrom focal_module import find_vulns\n\ndef test_find_vulns():\n    assert find_vulns() is None\n\ndef test_find_vulns_none():\n    assert find_vulns(None) is None\n\ndef test_find_vulns_zero():\n    assert find_vulns(0) is None\n\ndef test_find_vulns_multiple_args():\n    assert find_vulns(1, 2, 3) is None\n\ndef test_find_vulns_multiple_kwargs():\n    assert find_vulns(**{'a': 1, 'b': 2}) is None\n\ndef test_find_vulns_mixed_args_kwargs():\n    assert find_vulns(1, **{'c': 3}) is None\n```"
+  },
+  {
+    "method_name": "std",
+    "method_code": "def std(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'std'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the function 'std':\n\n```\nimport pytest\nfrom your_module import std\n\ndef test_std():\n    assert std(1) == 1\n    assert std(-1) == -1\n    assert std(0) == 0\n    assert std(None) == None\n    assert std(0.0) == 0.0\n    assert std(-0.0) == -0.0\n    assert std(1.0) == 1.0\n    assert std(-1.0) == -1.0\n    assert std(1e10) == 1e10\n    assert std(-1e10) == -1e10\n    assert std(1e-10) == 1e-10\n    assert std(-1e-10) == -1e-10\n    assert std(1e-100) == 1e-100\n    assert std(-1e-100) == -1e-100\n    assert std(1e100) == 1e100\n    assert std(-1e100) == -1e100\n    assert std(1e200) == 1e200\n    assert std(-1e200) == -1e200\n    assert std(1e-200) == 1e-200\n    assert std(-1e-200) == -1e-200\n    assert std(1e300) == 1e300\n    assert std(-1e300) == -1e300\n    assert std(1e-300) == 1e-300\n    assert std(-1e-300) == -1e-300\n    assert std(1e400) == 1e400\n    assert std(-1e400) == -1e400\n    assert std(1e-400) == 1e-400\n    assert std(-1e-400) == -1e-400\n    assert std(1e500) == 1e500\n    assert std(-1e500) == -1e500\n    assert std(1e-500) == 1e-500\n    assert std(-1e-500) == -1e-500\n    assert std(1e600) == 1e600\n    assert std(-1e600) == -1e600\n    assert std(1e-600) == 1e-600\n    assert std(-1e-600) == -1e-600\n    assert std(1e700) == 1e700\n    assert std(-1e700) == -1e700\n    assert std(1e-700) == 1e-700\n    assert std(-1e-700) == -1e-700\n    assert std(1e800) == 1e800\n    assert std(-1e800) == -1e800\n    assert std(1e-800) == 1e-800\n    assert std(-1e-800) == -1e-800\n    assert std(1e900) == 1e900\n    assert std(-1e900) == -1e900\n    assert std(1e-900) == 1e-900\n    assert std(-1e-900) == -1e-900\n    assert std(1e1000) == 1e1000\n    assert std(-1e1000) == -1e1000\n    assert std(1e-1000) == 1e-1000\n    assert std(-1e-1000) == -1e-1000\n    assert std(1e1100) == 1e1100\n    assert std(-1e1100) == -1e1100\n    assert std(1e-1100) == 1e-1100\n    assert std(-1e-1100) == -1e-1100\n    assert std(1e1200) == 1e1200\n    assert std(-1e1200) == -1e1200\n    assert std(1e-1200) == 1e-1200\n    assert std(-1e-1200) == -1e-1200\n    assert std(1e1300) == 1e1300\n    assert std(-1e1300) == -1e1300\n    assert std(1e-1300) == 1e-1300\n    assert std(-1e-1300) == -1e-1300\n    assert std(1e1400) == 1e1400\n    assert std(-1e1400) == -1e1400\n    assert std(1e-1400) == 1e-1400\n    assert std(-1e-1400) == -1e-1400\n    assert std(1e1500) == 1e1500\n    assert std(-1e1500) == -1e1500\n    assert std(1e-1500) == 1e-1500\n    assert std(-1e-1500) == -1e-1500\n    assert std(1e1600) == 1e1600\n    assert std(-1e1600) == -1e1600\n    assert std(1e-1600) == 1e-1600\n    assert std(-1e-1600) == -1e-1600\n    assert std(1e1700) == 1e1700\n    assert std(-1e1700) == -1e1700\n    assert std(1e-1700) == 1e-1700\n    assert std(-1e-1700) == -1e-1700\n    assert std(1e1800) == 1e1800\n    assert std(-1e1800) == -1e1800\n    assert std(1e-1800) == 1e-1800\n    assert std(-1e-1800) == -1e-1800\n    assert std(1e1900) == 1e1900\n    assert std(-1e1900) == -1e1900\n    assert std(1e-1900) == 1e-1900\n    assert std(-1e-1900) == -1e-1900\n    assert std(1e2000) == 1e2000\n    assert std(-1e2000) == -1e2000\n    assert std(1e-2000) == 1e-2000\n    assert std(-1e-2000) == -1e-2000\n    assert std(1e2100) == 1e2100\n    assert std(-1e2100) == -1e2100\n    assert std(1e-2100) == 1e-2100\n    assert std(-1e-2100) == -1e-2100\n    assert std(1e2200) == 1e2200\n    assert std(-1e2200) == -1e2200\n    assert std(1e-2200) == 1e-2200\n    assert std(-1e-2200) == -1e-2200\n    assert std(1e2300) == 1e2300\n    assert std(-1e2300) == -1e2300\n    assert std(1e-2300) == 1e-2300\n    assert std(-1e-2300) == -1e-2300\n    assert std(1e2400) == 1e2400\n    assert std(-1e2400) == -1e2400\n    assert std(1e-2400) == 1e-2400\n    assert std(-1e-2400) == -1e-2400\n    assert std(1e2500) == 1e2500\n    assert std(-1e2500) == -1e2500\n    assert std(1e-2500) == 1e-2500\n    assert std(-1e-2500) == -1e-2500\n    assert std(1e2600) == 1e2600\n    assert std(-1e2600) == -1e2600\n    assert std(1e-2600) == 1e-2600\n    assert std(-1e-2600) == -1e-2600\n    assert std(1e2700) == 1e2700\n    assert std(-1e2700) == -1e2700\n    assert std(1e-2700) == 1e-2700\n    assert std(-1e-2700) == -1e-2700\n    assert std(1e2800) == 1e2800\n    assert std(-1e2800) == -1e2800\n    assert std(1e-2800) == 1e-2800\n    assert std(-1e-2800) == -1e-2800\n    assert std(1e2900) == 1e2900\n    assert std(-1e2900) == -1e2900\n    assert std(1e-2900) == 1e-2900\n    assert std(-1e-2900) == -1e-2900\n    assert std(1e3000) == 1e3000\n    assert std(-1e3000) == -1e3000\n    assert std(1e-3000) == 1e-3000\n    assert std(-1e-3000) == -1e-3000\n    assert std(1e3100) == 1e3100\n    assert std(-1e3100) == -1e3100\n    assert std(1e-3100) == 1e-3100\n    assert std(-1e-3100) == -1e-3100\n    assert std(1e3200) == 1e3200\n    assert std(-1e3200) == -1e3200\n    assert std(1e-3200) == 1e-3200\n    assert std(-1e-3200) == -1e-3200\n    assert std(1e3300) == 1e3300\n    assert std(-1e3300) == -1e3300\n    assert std(1e-3300) == 1e-3300\n    assert std(-1e-3300) == -1e-3300\n    assert std(1e3400) == 1e3400\n    assert std(-1e3400) == -1e3400\n    assert std(1e-3400) == 1e-3400\n    assert std(-1e-3400) == -1e-3400\n    assert std(1e3500) == 1e3500\n    assert std(-1e3500) == -1e3500\n    assert std(1e-3500) == 1e-3500\n    assert std(-1e-3500) == -1e-3500\n    assert std(1e3600) == 1e3600\n    assert std(-1e3600) == -1e3600\n    assert std(1e-3600) == 1e-3600\n    assert std(-1e-3600) == -1e-3600\n    assert std(1e3700) == 1e3700\n    assert std(-1e3700) == -1e3700\n    assert std(1e-3700) == 1e-3700\n    assert std(-1e-3700) == -1e-3700\n    assert std(1e3800) == 1e3800\n    assert std(-1e3800) == -1e3800\n    assert std(1e-3800) == 1e-3800\n    assert std(-1e-3800) == -1e-3800\n    assert std(1e3900) == 1e3900\n    assert std(-1e3900) == -1e3900\n    assert std(1e-3900) == 1e-3900\n    assert std(-1e-3900) == -1e-3900\n    assert std(1e4000) == 1e4000\n    assert std(-1e4000) == -1e4000\n    assert std(1e-4000) == 1e-4000\n    assert std(-1e-4000) == -1e-4000"
+  },
+  {
+    "method_name": "std",
+    "method_code": "def std(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef std(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `std` function:\n```python\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([], {}, None),  # normal case: no inputs\n    ([1], {}, 1),  # normal case: single input\n    ([1, 2], {}, 1.0),  # normal case: multiple inputs\n    ([0], {}, 0),  # edge case: zero input\n    ([-1], {}, None),  # edge case: negative input\n    ([], {\"a\": 1}, None),  # edge case: empty input\n    ([\"a\"], {\"a\": 1}, None),  # edge case: invalid input (string)\n    ({\"a\": 1}, {\"a\": 1}, None),  # edge case: invalid input (dict)\n    (1e100, {}, None),  # edge case: large input\n    (1e-100, {}, None),  # edge case: very small input\n])\ndef test_std(args, kwargs, expected):\n    result = std(*args, **kwargs)\n    assert result == expected\n\ndef test_std_none_input():\n    result = std(None)\n    assert result is None\n\ndef test_std_zero_input():\n    result = std(0)\n    assert result == 0\n\ndef test_std_negative_input():\n    result = std(-1)\n    assert result is None\n\ndef test_std_empty_input():\n    result = std()\n    assert result is None\n\ndef test_std_invalid_input():\n    result = std(\"a\")\n    assert result is None\n\ndef test_std_large_input():\n    result = std(1e100)\n    assert result is None\n\ndef test_std_small_input():\n    result = std(1e-100)\n    assert result is None\n```\nNote that I've used `parametrize` to test multiple inputs with the same expected output, and separate test functions for the specific edge cases."
+  },
+  {
+    "method_name": "std",
+    "method_code": "def std(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import std\n\nFUNCTION NAME: std\n\nFUNCTION CODE:\ndef std(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# tests/test_std.py\nimport pytest\nfrom focal_module import std\n\ndef test_std():\n    assert std() is None\n\ndef test_std_none():\n    assert std(None) is None\n\ndef test_std_zero():\n    assert std(0) is None\n\ndef test_std_multiple_args():\n    assert std(1, 2, 3) is None\n\ndef test_std_multiple_kwargs():\n    assert std(a=1, b=2, c=3) is None\n\ndef test_std_mixed_args_kwargs():\n    assert std(1, a=2, c=3) is None\n```"
+  },
+  {
+    "method_name": "create_container",
+    "method_code": "def create_container(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'create_container'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `create_container` function:\n```\nimport pytest\n\ndef test_create_container():\n    def create_container(name, size):\n        # Your implementation here\n        return {\"name\": name, \"size\": size}\n\n    # Normal case\n    container = create_container(\"my_container\", 1024)\n    assert container[\"name\"] == \"my_container\"\n    assert container[\"size\"] == 1024\n\n    # Edge case: None for name\n    container = create_container(None, 1024)\n    assert container is None\n\n    # Edge case: 0 for size\n    container = create_container(\"my_container\", 0)\n    assert container[\"size\"] == 0\n\n    # Edge case: None for size\n    container = create_container(\"my_container\", None)\n    assert container is None\n\n    # Boundary case: large size\n    container = create_container(\"my_container\", 1048576)\n    assert container[\"size\"] == 1048576\n\n    # Boundary case: small size\n    container = create_container(\"my_container\", 1)\n    assert container[\"size\"] == 1\n```\nNote that I've included multiple assertions to cover various scenarios, including edge cases and boundary cases. The `create_container` function is not implemented, so you'll need to fill in the implementation for it to work."
+  },
+  {
+    "method_name": "create_container",
+    "method_code": "def create_container(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef create_container(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `create_container` function:\n```python\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ((), {}, None),  # normal case: no args, no kwargs\n    (['a'], {}, 'a'),  # normal case: single arg\n    ((), {'x': 1}, {'x': 1}),  # normal case: single kwarg\n    (['a', 'b'], {'x': 1}, {'x': 1}),  # normal case: multiple args, single kwarg\n])\ndef test_create_container_normal(args, kwargs, expected):\n    result = create_container(*args, **kwargs)\n    assert result == expected\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([], {}, None),  # edge case: no args, no kwargs\n    ([], {'x': 1}, None),  # edge case: no args, single kwarg\n    (['a'], {}, 'a'),  # edge case: single arg, no kwargs\n    (['a'], {'x': 1}, {'x': 1}),  # edge case: single arg, single kwarg\n    (['a', 'b'], {}, 'a'),  # edge case: multiple args, no kwargs\n    (['a', 'b'], {'x': 1}, {'x': 1}),  # edge case: multiple args, single kwarg\n])\ndef test_create_container_edge(args, kwargs, expected):\n    result = create_container(*args, **kwargs)\n    assert result == expected\n\n@pytest.mark.parametrize(\"args, kwargs\", [\n    ([None], {}),  # edge case: None as arg\n    ([0], {}),  # edge case: 0 as arg\n    (['a', 0], {}),  # edge case: 0 as arg, other args\n    (['a', None], {}),  # edge case: None as arg, other args\n])\ndef test_create_container_edge_invalid(args, kwargs):\n    with pytest.raises(TypeError):\n        create_container(*args, **kwargs)\n\n@pytest.mark.parametrize(\"args, kwargs\", [\n    ([], {'x': 'not a dict'}),  # edge case: invalid kwarg\n    (['a'], {'x': 1, 'y': 'not a dict'}),  # edge case: multiple invalid kwrags\n])\ndef test_create_container_edge_invalid_kwargs(args, kwargs):\n    with pytest.raises(TypeError):\n        create_container(*args, **kwargs)\n\n@pytest.mark.parametrize(\"args, kwargs\", [\n    (['a'] * 1000, {}),  # large input: many args\n    (['a'], {'x': 1} * 1000),  # large input: many kwrags\n])\ndef test_create_container_large_input(args, kwargs):\n    result = create_container(*args, **kwargs)\n    assert result is not None\n```\nNote that I've used `parametrize` to run the same test function with different inputs, and also used separate test functions for normal cases, edge cases, and invalid input cases."
+  },
+  {
+    "method_name": "create_container",
+    "method_code": "def create_container(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import create_container\n\nFUNCTION NAME: create_container\n\nFUNCTION CODE:\ndef create_container(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# tests/test_focal_module.py\nimport pytest\nfrom focal_module import create_container\n\ndef test_create_container():\n    assert create_container() is None\n\ndef test_create_container_none():\n    assert create_container(None) is None\n\ndef test_create_container_zero():\n    assert create_container(0) is None\n\ndef test_create_container_multiple_args():\n    assert create_container(1, 2, 3) is None\n\ndef test_create_container_multiple_kwargs():\n    assert create_container(a=1, b=2, c=3) is None\n\ndef test_create_container_mixed_args_kwargs():\n    assert create_container(1, a=2, c=3) is None\n```"
+  },
+  {
+    "method_name": "preprocess_weights_for_loading",
+    "method_code": "def preprocess_weights_for_loading(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'preprocess_weights_for_loading'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the function 'preprocess_weights_for_loading':\n\n```\nimport pytest\nfrom your_module import preprocess_weights_for_loading\n\ndef test_preprocess_weights_for_loading():\n    # Test normal case\n    weights = [1, 2, 3, 4, 5]\n    result = preprocess_weights_for_loading(weights)\n    assert result == [1, 2, 3, 4, 5]\n\n    # Test edge case: None\n    weights = None\n    with pytest.raises(TypeError):\n        preprocess_weights_for_loading(weights)\n\n    # Test edge case: 0\n    weights = [0, 1, 2, 3, 4]\n    result = preprocess_weights_for_loading(weights)\n    assert result == [0, 1, 2, 3, 4]\n\n    # Test boundary case: single element\n    weights = [5]\n    result = preprocess_weights_for_loading(weights)\n    assert result == [5]\n\n    # Test boundary case: empty list\n    weights = []\n    with pytest.raises(ValueError):\n        preprocess_weights_for_loading(weights)\n\n    # Test edge case: negative number\n    weights = [-1, 1, 2, 3, 4]\n    result = preprocess_weights_for_loading(weights)\n    assert result == [-1, 1, 2, 3, 4]\n```"
+  },
+  {
+    "method_name": "preprocess_weights_for_loading",
+    "method_code": "def preprocess_weights_for_loading(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef preprocess_weights_for_loading(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `preprocess_weights_for_loading` function:\n```python\nimport pytest\n\ndef test_preprocess_weights_for_loading():\n    # Normal cases\n    assert preprocess_weights_for_loading() is None\n    assert preprocess_weights_for_loading(1) is None\n    assert preprocess_weights_for_loading(1, 2) is None\n    assert preprocess_weights_for_loading(a=1) is None\n    assert preprocess_weights_for_loading(a=1, b=2) is None\n\n    # Edge cases: zero\n    assert preprocess_weights_for_loading(0) is None\n    assert preprocess_weights_for_loading(0, 0) is None\n    assert preprocess_weights_for_loading(a=0) is None\n    assert preprocess_weights_for_loading(a=0, b=0) is None\n\n    # Edge cases: negative\n    assert preprocess_weights_for_loading(-1) is None\n    assert preprocess_weights_for_loading(-1, -2) is None\n    assert preprocess_weights_for_loading(a=-1) is None\n    assert preprocess_weights_for_loading(a=-1, b=-2) is None\n\n    # Edge cases: empty inputs\n    assert preprocess_weights_for_loading() is None\n    assert preprocess_weights_for_loading([]) is None\n    assert preprocess_weights_for_loading({}) is None\n\n    # Edge cases: invalid inputs\n    with pytest.raises(TypeError):\n        preprocess_weights_for_loading(None)\n    with pytest.raises(TypeError):\n        preprocess_weights_for_loading(\"invalid\")\n    with pytest.raises(TypeError):\n        preprocess_weights_for_loading({\"invalid\": \"input\"})\n\n    # Edge cases: boundary\n    assert preprocess_weights_for_loading(1e-6) is None\n    assert preprocess_weights_for_loading(1e6) is None\n\n    # Edge cases: large inputs\n    assert preprocess_weights_for_loading(1e9) is None\n    assert preprocess_weights_for_loading(1e9, 1e9) is None\n    assert preprocess_weights_for_loading(a=1e9, b=1e9) is None\n\n    # Edge cases: None input\n    assert preprocess_weights_for_loading(None) is None\n    assert preprocess_weights_for_loading(None, None) is None\n    assert preprocess_weights_for_loading(a=None, b=None) is None\n```\nNote that I've used `pytest.mark.parametrize` to test the function with different inputs, and also tested the function with various edge cases, including zero, negative, empty, invalid, boundary, and large inputs."
+  },
+  {
+    "method_name": "preprocess_weights_for_loading",
+    "method_code": "def preprocess_weights_for_loading(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import preprocess_weights_for_loading\n\nFUNCTION NAME: preprocess_weights_for_loading\n\nFUNCTION CODE:\ndef preprocess_weights_for_loading(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# tests/test_focal_module.py\nimport pytest\nfrom focal_module import preprocess_weights_for_loading\n\ndef test_preprocess_weights_for_loading():\n    assert preprocess_weights_for_loading() is None\n\ndef test_preprocess_weights_for_loading_none():\n    assert preprocess_weights_for_loading(None) is None\n\ndef test_preprocess_weights_for_loading_zero():\n    assert preprocess_weights_for_loading(0) is None\n\ndef test_preprocess_weights_for_loading_nonzero():\n    assert preprocess_weights_for_loading(1) is None\n\ndef test_preprocess_weights_for_loading_multiple_args():\n    assert preprocess_weights_for_loading(1, 2, 3) is None\n\ndef test_preprocess_weights_for_loading_multiple_kwargs():\n    assert preprocess_weights_for_loading(a=1, b=2, c=3) is None\n\ndef test_preprocess_weights_for_loading_mixed_args_kwargs():\n    assert preprocess_weights_for_loading(1, a=2, c=3) is None\n```"
+  },
+  {
+    "method_name": "communicate",
+    "method_code": "def communicate(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function 'communicate'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the function `communicate`:\n```\nimport pytest\n\ndef test_communicate():\n    def communicate(input_str):\n        # implementation of the function\n        pass\n\n    # normal case\n    assert communicate(\"Hello, world!\") == \"Hello, world!\"\n\n    # edge case: None\n    assert communicate(None) == \"None\"\n\n    # edge case: 0\n    assert communicate(0) == \"0\"\n\n    # boundary case: empty string\n    assert communicate(\"\") == \"\"\n\n    # boundary case: single character\n    assert communicate(\"a\") == \"a\"\n\n    # test with None as input\n    with pytest.raises(TypeError):\n        communicate(None)\n\n    # test with non-string input\n    with pytest.raises(TypeError):\n        communicate(123)\n```\nNote that the `communicate` function is not implemented, as it's not provided in the problem statement. The tests only focus on the function's behavior and edge cases."
+  },
+  {
+    "method_name": "communicate",
+    "method_code": "def communicate(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef communicate(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `communicate` function:\n```python\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([], {}, None),  # normal case: no args, no kwargs\n    ([1], {}, 1),  # normal case: one arg, no kwargs\n    ([], {\"key\": \"value\"}, None),  # normal case: no args, one kwarg\n    ([1, 2], {\"key\": \"value\"}, 1),  # normal case: multiple args, one kwarg\n])\ndef test_communicate_normal(args, kwargs, expected):\n    assert communicate(*args, **kwargs) == expected\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([0], {}, 0),  # edge case: zero args\n    ([-1], {}, None),  # edge case: negative args\n    ([], {\"key\": None}, None),  # edge case: empty kwargs\n    ([\"invalid\"], {\"key\": \"value\"}, None),  # edge case: invalid args\n    ([\"large\"], {\"key\": \"value\"}, None),  # edge case: large args\n])\ndef test_communicate_edge(args, kwargs, expected):\n    assert communicate(*args, **kwargs) == expected\n\ndef test_communicate_none():\n    assert communicate(None) is None\n\ndef test_communicate_zero():\n    assert communicate(0) == 0\n\ndef test_communicate_negative():\n    assert communicate(-1) is None\n\ndef test_communicate_empty_kwargs():\n    assert communicate([], {}) is None\n\ndef test_communicate_invalid_args():\n    assert communicate([\"invalid\"]) is None\n\ndef test_communicate_large_args():\n    assert communicate([\"large\"]) is None\n```\nNote that I've used `parametrize` to test multiple inputs with the same expected output, and also included separate tests for specific edge cases like `None`, `0`, and negative values."
+  },
+  {
+    "method_name": "communicate",
+    "method_code": "def communicate(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import communicate\n\nFUNCTION NAME: communicate\n\nFUNCTION CODE:\ndef communicate(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# test_focal_module.py\nimport pytest\nfrom focal_module import communicate\n\ndef test_communicate():\n    assert communicate() is None\n\ndef test_communicate_none():\n    assert communicate(None) is None\n\ndef test_communicate_zero():\n    assert communicate(0) is None\n\ndef test_communicate_string():\n    with pytest.raises(TypeError):\n        communicate(\"test\")\n\ndef test_communicate_dict():\n    with pytest.raises(TypeError):\n        communicate({\"test\": \"test\"})\n\ndef test_communicate_tuple():\n    with pytest.raises(TypeError):\n        communicate((\"test\", \"test\"))\n```"
+  },
+  {
+    "method_name": "_validate_option",
+    "method_code": "def _validate_option(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "baseline_name_only",
+    "prompt_strategy_name": "Baseline (name-only prompt)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\nWrite pytest unit tests for the function '_validate_option'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `_validate_option` function:\n```\nimport pytest\n\ndef test_validate_option():\n    def _validate_option(option):\n        # Your implementation here\n        pass\n\n    # Valid options\n    assert _validate_option(\"hello\") is None\n    assert _validate_option(\"world\") is None\n    assert _validate_option(\"foo\") is None\n    assert _validate_option(\"bar\") is None\n\n    # Edge cases\n    assert _validate_option(None) is None\n    assert _validate_option(\"0\") is None\n\n    # Invalid options\n    with pytest.raises(ValueError):\n        _validate_option(\"invalid\")\n    with pytest.raises(ValueError):\n        _validate_option(123)\n    with pytest.raises(ValueError):\n        _validate_option({\"key\": \"value\"})\n\n    # Boundary cases\n    assert _validate_option(\"\") is None\n    assert _validate_option(\"   \") is None\n    assert _validate_option(\"a\" * 100) is None\n    assert _validate_option(\"a\" * 101) is None\n```\nNote that the `_validate_option` function is not implemented, as it's supposed to be your code. The tests are designed to cover various scenarios, including valid options, edge cases, invalid options, and boundary cases."
+  },
+  {
+    "method_name": "_validate_option",
+    "method_code": "def _validate_option(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "advanced_with_code",
+    "prompt_strategy_name": "Advanced (includes method code + edge cases)",
+    "model": "llama3",
+    "temperature": 0.2,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "You are a professional Python developer.\n\nHere is the function:\ndef _validate_option(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "Here are the pytest unit tests for the `_validate_option` function:\n```python\nimport pytest\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ((), {}, None),  # normal case: no arguments\n    (['valid'], {}),  # normal case: single valid argument\n    ((), {'key': 'valid'}),  # normal case: single valid keyword argument\n    (['valid', 'another'], {}),  # normal case: multiple valid arguments\n    ((), {'key': 'valid', 'another_key': 'valid'}),  # normal case: multiple valid keyword arguments\n])\ndef test_validate_option_normal(args, kwargs, expected):\n    result = _validate_option(*args, **kwargs)\n    assert result == expected\n\n@pytest.mark.parametrize(\"args, kwargs, expected\", [\n    ([0], {}),  # edge case: zero arguments\n    ([-1], {}),  # edge case: negative arguments\n    ([], {}),  # edge case: empty arguments\n    (['None'], {}),  # edge case: None argument\n    (['0'], {}),  # edge case: zero argument\n    (['invalid'], {}),  # edge case: invalid argument\n    (['large'], {}),  # edge case: large argument\n    (['very large'], {}),  # edge case: very large argument\n    ((), {'key': 'None'}),  # edge case: None keyword argument\n    ((), {'key': 0}),  # edge case: zero keyword argument\n    ((), {'key': ''}),  # edge case: empty keyword argument\n    ((), {'key': 'invalid'}),  # edge case: invalid keyword argument\n    ((), {'key': 'large'}),  # edge case: large keyword argument\n    ((), {'key': 'very large'}),  # edge case: very large keyword argument\n])\ndef test_validate_option_edge(args, kwargs, expected):\n    result = _validate_option(*args, **kwargs)\n    assert result == expected\n```\nNote that I've used `parametrize` to test multiple combinations of arguments and keyword arguments, as well as edge cases. I've also included tests for invalid inputs, such as `None`, zero, negative, and large values."
+  },
+  {
+    "method_name": "_validate_option",
+    "method_code": "def _validate_option(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "prompt_strategy": "strict_import_focal_module",
+    "prompt_strategy_name": "Strict import + no markdown",
+    "model": "llama3",
+    "temperature": 0.1,
+    "edge_cases_hint": [
+      "None",
+      "0"
+    ],
+    "prompt_used": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import _validate_option\n\nFUNCTION NAME: _validate_option\n\nFUNCTION CODE:\ndef _validate_option(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n\n\n\nSpecific edge cases to include where applicable: ['None', '0']\n",
+    "generated_test": "```\n# tests/test_focal_module.py\nimport pytest\nfrom focal_module import _validate_option\n\ndef test_validate_option():\n    assert _validate_option(None) is None\n    assert _validate_option(0) is None\n    assert _validate_option('') is None\n    assert _validate_option('test') is None\n    assert _validate_option({'test': 'test'}) is None\n    assert _validate_option((1, 2, 3)) is None\n    assert _validate_option([1, 2, 3]) is None\n    assert _validate_option({'test': None}) is None\n    assert _validate_option({'test': 0}) is None\n    assert _validate_option({'test': ''}) is None\n    assert _validate_option({'test': 'test'}) is None\n    assert _validate_option({'test': (1, 2, 3)}) is None\n    assert _validate_option({'test': [1, 2, 3]}) is None\n```"
+  }
+]

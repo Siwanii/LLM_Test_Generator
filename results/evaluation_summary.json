@@ -1,6 +1,6 @@
 {
-  "total_tests": 100,
-  "total_assertions": 784,
-  "avg_assertions": 7.84,
-  "edge_cases": 100
+  "total_tests": 10,
+  "total_assertions": 97,
+  "avg_assertions": 9.7,
+  "edge_cases": 10
 }

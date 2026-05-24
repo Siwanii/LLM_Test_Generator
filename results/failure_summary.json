@@ -1,7 +1,7 @@
 {
-  "total_tests": 100,
-  "valid": 31,
-  "syntax_errors": 69,
-  "no_assertions": 96,
-  "extra_text": 57
+  "total_tests": 10,
+  "valid": 8,
+  "syntax_errors": 2,
+  "no_assertions": 10,
+  "extra_text": 9
 }

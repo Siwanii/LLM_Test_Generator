@@ -1,10 +1,10 @@
 import json
 import random
 
-INPUT_FILE = "/Users/pradeep/Documents/LLM_Test_Generator_Project/results/extracted_methods.json"
-OUTPUT_FILE = "/Users/pradeep/Documents/LLM_Test_Generator_Project/results/sampled_methods.json"
+INPUT_FILE = "results/extracted_methods.json"
+OUTPUT_FILE = "results/sampled_methods.json"
 
-SAMPLE_SIZE = 1000
+SAMPLE_SIZE = 10
 
 print("Loading extracted methods...")
 

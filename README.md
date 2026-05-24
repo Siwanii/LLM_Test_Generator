@@ -1,8 +1,8 @@
-# 🧪 LLM-Based Automatic Unit Test Generation Using Focal-Method Datasets
+# LLM-Based Automatic Unit Test Generation Using Focal-Method Datasets
 
 ---
 
-## 📌 1. Project Overview
+## 1. Project Overview
 
 This project explores how **Large Language Models (LLMs)** can automatically generate **unit tests for Python functions** using a focal-method-based approach.
 
@@ -17,7 +17,7 @@ Finally, results are visualized using an interactive dashboard.
 
 ---
 
-## 🎯 2. Objectives
+## 2. Objectives
 
 * Automate unit test generation using LLMs
 * Compare different prompting strategies
@@ -27,9 +27,9 @@ Finally, results are visualized using an interactive dashboard.
 
 ---
 
-## 🧱 3. End-to-End Pipeline
+## 3. End-to-End Pipeline
 
-### 🔁 Workflow Diagram
+### Workflow Diagram
 
 ```text
 Dataset (pyMethods2Test)
@@ -49,7 +49,7 @@ Dashboard Visualization
 
 ---
 
-## 🔄 4. Execution Flow (Step-by-Step)
+## 4. Execution Flow (Step-by-Step)
 
 ```text
 1. extract_methods.py
@@ -63,7 +63,7 @@ Dashboard Visualization
 
 ---
 
-## 🗂️ 5. Project Structure
+## 5. Project Structure
 
 ```text
 LLM_Test_Generator_Project/
@@ -90,9 +90,9 @@ LLM_Test_Generator_Project/
 
 ---
 
-## ⚙️ 6. Setup Instructions
+## 6. Setup Instructions
 
-### 🔹 Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install ollama streamlit
@@ -100,7 +100,7 @@ pip install ollama streamlit
 
 ---
 
-### 🔹 Run LLM Model
+### Run LLM Model
 
 ```bash
 ollama run llama3
@@ -108,9 +108,9 @@ ollama run llama3
 
 ---
 
-## 🚀 7. How to Run the Project
+## 7. How to Run the Project
 
-### 🔹 Step 1: Extract Methods
+### Step 1: Extract Methods
 
 ```bash
 python3 scripts/extract_methods.py
@@ -118,7 +118,7 @@ python3 scripts/extract_methods.py
 
 ---
 
-### 🔹 Step 2: Sample Methods
+### Step 2: Sample Methods
 
 ```bash
 python3 scripts/sample_methods.py
@@ -126,7 +126,7 @@ python3 scripts/sample_methods.py
 
 ---
 
-### 🔹 Step 3: Generate Tests (Baseline)
+### Step 3: Generate Tests (Baseline)
 
 ```bash
 python3 scripts/generate_tests_llm.py
@@ -134,7 +134,7 @@ python3 scripts/generate_tests_llm.py
 
 ---
 
-### 🔹 Step 4: Generate Tests (Advanced)
+### Step 4: Generate Tests (Advanced)
 
 ```bash
 python3 scripts/generate_tests_llm_advanced.py
@@ -142,7 +142,7 @@ python3 scripts/generate_tests_llm_advanced.py
 
 ---
 
-### 🔹 Step 5: Evaluate Tests
+### Step 5: Evaluate Tests
 
 ```bash
 python3 scripts/evaluate_tests.py
@@ -151,15 +151,15 @@ python3 scripts/evaluate_tests.py
 ### ✅ Output:
 
 ```text
-Total tests: 100
-Total assertions: 784
-Average assertions per test: 7.84
-Edge case tests: 100
+Total tests: 300
+Total assertions: 2814
+Average assertions per test: 9.38
+Edge case tests: 300
 ```
 
 ---
 
-### 🔹 Step 6: Failure Analysis
+### Step 6: Failure Analysis
 
 ```bash
 python3 scripts/failure_analysis.py
@@ -168,15 +168,15 @@ python3 scripts/failure_analysis.py
 ### ✅ Output:
 
 ```text
-Valid Python code: 31
-Syntax errors: 69
-No assertions: 96
-Extra text issues: 57
+Valid Python code: 159
+Syntax errors: 141
+No assertions: 215
+Extra text issues: 88
 ```
 
 ---
 
-### 🔹 Step 7: Run Dashboard
+### Step 7: Run Dashboard
 
 ```bash
 streamlit run scripts/dashboard_streamlit.py
@@ -190,19 +190,19 @@ http://localhost:8501
 
 ---
 
-## 🧠 8. Prompt Strategies
+## 8. Prompt Strategies
 
-### 🔹 Baseline Prompt
+### Baseline Prompt
 
 * Uses only function name
 * Generates simple tests
 
-### 🔹 Context Prompt
+### Context Prompt
 
 * Adds structured instructions
 * Improves quality
 
-### 🔹 Advanced Prompt
+### Advanced Prompt
 
 * Includes edge cases
 * Multiple assertions
@@ -211,7 +211,7 @@ http://localhost:8501
 
 ---
 
-## 📊 9. Evaluation Metrics
+## 9. Evaluation Metrics
 
 | Metric              | Description                         |
 | ------------------- | ----------------------------------- |
@@ -223,35 +223,35 @@ http://localhost:8501
 
 ---
 
-## 📉 10. Results
+## 10. Results
 
-### 📊 Test Generation Results
+### Test Generation Results
 
 | Metric              | Value |
 | ------------------- | ----- |
-| Total Tests         | 100   |
-| Total Assertions    | 784   |
-| Avg Assertions/Test | 7.84  |
+| Total Tests         | 300   |
+| Total Assertions    | 2814   |
+| Average Assertions/Test | 9.38  |
 | Edge Case Coverage  | 100%  |
 
 ---
 
-### ⚠️ Failure Analysis
+### Failure Analysis
 
 | Metric        | Value |
 | ------------- | ----- |
-| Valid Tests   | 31    |
-| Syntax Errors | 69    |
-| No Assertions | 96    |
-| Extra Text    | 57    |
+| Valid Tests   | 159    |
+| Syntax Errors | 141    |
+| No Assertions | 215    |
+| Extra Text    | 88    |
 
 ---
 
-## 🧠 11. Research Questions
+## 11. Research Questions
 
 ---
 
-### 🔹 RQ1: Effect of Prompting Strategy
+### RQ1: Effect of Prompting Strategy
 
 Prompt design significantly improves test quality.
 
@@ -264,7 +264,7 @@ Structured prompts matter more than raw context.
 
 ---
 
-### 🔹 RQ2: Quality of Generated Tests
+### RQ2: Quality of Generated Tests
 
 Generated tests show strong coverage:
 
@@ -278,7 +278,7 @@ However:
 
 ---
 
-### 🔹 RQ3: Limitations of LLMs
+### RQ3: Limitations of LLMs
 
 Key limitations observed:
 
@@ -292,7 +292,7 @@ LLMs assist test generation but require validation.
 
 ---
 
-## 🧾 12. Key Insights
+## 12. Key Insights
 
 * LLMs generate diverse test cases
 * Prompt engineering improves output quality
@@ -301,7 +301,7 @@ LLMs assist test generation but require validation.
 
 ---
 
-## 📊 13. Dashboard
+## 13. Dashboard
 
 The project includes an interactive dashboard built using Streamlit.
 
@@ -314,7 +314,7 @@ The project includes an interactive dashboard built using Streamlit.
 
 ---
 
-## 🏁 14. Conclusion
+## 14. Conclusion
 
 This project demonstrates that:
 
@@ -326,7 +326,7 @@ This project demonstrates that:
 
 ---
 
-## 🚀 15. Future Work
+## 15. Future Work
 
 * Add pytest execution
 * Measure real code coverage
@@ -335,7 +335,7 @@ This project demonstrates that:
 
 ---
 
-## 🛠️ 16. Technologies Used
+## 16. Technologies Used
 
 * Python
 * Ollama
@@ -345,7 +345,7 @@ This project demonstrates that:
 
 ---
 
-## 📌 17. Final Status
+## 17. Final Status
 
 ```text
 Project Completed: ✅ 100%
@@ -353,7 +353,7 @@ Project Completed: ✅ 100%
 
 ---
 
-## 🙌 18. Acknowledgements
+## 18. Acknowledgements
 
 * pyMethods2Test dataset
 * Open-source LLM tools

@@ -1,0 +1,23 @@
+{
+  "default_model": "llama3",
+  "strategies": [
+    {
+      "id": "baseline_name_only",
+      "name": "Baseline (name-only prompt)",
+      "temperature": 0.2,
+      "prompt_template": "You are a professional Python developer.\nWrite pytest unit tests for the function '{function_name}'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n"
+    },
+    {
+      "id": "advanced_with_code",
+      "name": "Advanced (includes method code + edge cases)",
+      "temperature": 0.2,
+      "prompt_template": "You are a professional Python developer.\n\nHere is the function:\n{method_code}\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n"
+    },
+    {
+      "id": "strict_import_focal_module",
+      "name": "Strict import + no markdown",
+      "temperature": 0.1,
+      "prompt_template": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import {function_name}\n\nFUNCTION NAME: {function_name}\n\nFUNCTION CODE:\n{method_code}\n"
+    }
+  ]
+}

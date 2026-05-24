@@ -1,7 +1,7 @@
 import os
 import json
 
-dataset_path = "/Users/pradeep/Documents/LLM_Test_Generator_Project/pymethods2test/data"
+dataset_path = "pymethods2test/data"
 
 methods = []
 
@@ -43,7 +43,7 @@ for root, dirs, files in os.walk(dataset_path):
 print("Total focal methods found:", len(methods))
 
 # Save extracted methods
-output_path = "/Users/pradeep/Documents/LLM_Test_Generator_Project/results/extracted_methods.json"
+output_path = "results/extracted_methods.json"
 
 with open(output_path, "w") as f:
     json.dump(methods, f, indent=2)

@@ -1,10 +1,10 @@
 import json
 import os
 
-SAMPLED_FILE = "/Users/pradeep/Documents/LLM_Test_Generator_Project/results/sampled_methods.json"
-OUTPUT_FILE = "/Users/pradeep/Documents/LLM_Test_Generator_Project/results/sampled_methods_with_code.json"
+SAMPLED_FILE = "results/sampled_methods.json"
+OUTPUT_FILE = "results/sampled_methods_with_code.json"
 
-DATASET_ROOT = "/Users/pradeep/Documents/LLM_Test_Generator_Project/pymethods2test"
+DATASET_ROOT = "pymethods2test"
 
 with open(SAMPLED_FILE, "r") as f:
     methods = json.load(f)

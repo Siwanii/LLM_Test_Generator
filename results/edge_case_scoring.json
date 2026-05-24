@@ -1,0 +1,1246 @@
+{
+  "summary": {
+    "total": 30,
+    "avg_score": 0.3606060606060606,
+    "category_coverage_rate": {
+      "none": 0.9333333333333333,
+      "empty_string": 0.3333333333333333,
+      "empty_list": 0.4,
+      "empty_dict": 0.36666666666666664,
+      "zero": 0.9333333333333333,
+      "negative": 0.0,
+      "large_number": 0.1,
+      "unicode": 0.0,
+      "nan_inf": 0.03333333333333333,
+      "raises": 0.4,
+      "boundary": 0.4666666666666667
+    }
+  },
+  "items": [
+    {
+      "id": "add_image_0",
+      "function_name": "add_image",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": false,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": true,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": false
+      },
+      "evidence": {
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "large_number": [
+          "1000000 literal",
+          "1000000 literal",
+          "2000000 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ]
+      }
+    },
+    {
+      "id": "add_image_1",
+      "function_name": "add_image",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.7272727272727273,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": true,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\"",
+          "\"\""
+        ],
+        "empty_list": [
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "large_number": [
+          "2000000 literal",
+          "1000000 literal",
+          "1000000 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "add_image_2",
+      "function_name": "add_image",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": true,
+        "zero": false,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "get_absolute_url_3",
+      "function_name": "get_absolute_url",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.36363636363636365,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\""
+        ],
+        "zero": [
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ]
+      }
+    },
+    {
+      "id": "get_absolute_url_4",
+      "function_name": "get_absolute_url",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.5454545454545454,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\""
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "get_absolute_url_5",
+      "function_name": "get_absolute_url",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "set_group_privacy_6",
+      "function_name": "set_group_privacy",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\""
+        ],
+        "zero": [
+          "0 literal"
+        ]
+      }
+    },
+    {
+      "id": "set_group_privacy_7",
+      "function_name": "set_group_privacy",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.6363636363636364,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\""
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ],
+        "boundary": [
+          "parametrize",
+          "parametrize",
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "set_group_privacy_8",
+      "function_name": "set_group_privacy",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "type_name_9",
+      "function_name": "type_name",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "type_name_10",
+      "function_name": "type_name",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.6363636363636364,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\""
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ],
+        "boundary": [
+          "parametrize",
+          "parametrize",
+          "parametrize",
+          "parametrize",
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "type_name_11",
+      "function_name": "type_name",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.18181818181818182,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ]
+      }
+    },
+    {
+      "id": "find_vulns_12",
+      "function_name": "find_vulns",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": true,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "zero": [
+          "0 literal"
+        ]
+      }
+    },
+    {
+      "id": "find_vulns_13",
+      "function_name": "find_vulns",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.5454545454545454,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ],
+        "boundary": [
+          "parametrize",
+          "parametrize",
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "find_vulns_14",
+      "function_name": "find_vulns",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.18181818181818182,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ]
+      }
+    },
+    {
+      "id": "std_15",
+      "function_name": "std",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.36363636363636365,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": true,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "nan_inf": [
+          "inf",
+          "inf",
+          "inf",
+          "inf",
+          "inf"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "std_16",
+      "function_name": "std",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.45454545454545453,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "boundary": [
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "std_17",
+      "function_name": "std",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.18181818181818182,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ]
+      }
+    },
+    {
+      "id": "create_container_18",
+      "function_name": "create_container",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": true,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ],
+        "large_number": [
+          "1048576 literal",
+          "1048576 literal"
+        ]
+      }
+    },
+    {
+      "id": "create_container_19",
+      "function_name": "create_container",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.5454545454545454,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ],
+        "boundary": [
+          "parametrize",
+          "parametrize",
+          "parametrize",
+          "parametrize",
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "create_container_20",
+      "function_name": "create_container",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.18181818181818182,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ]
+      }
+    },
+    {
+      "id": "preprocess_weights_for_loading_21",
+      "function_name": "preprocess_weights_for_loading",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.36363636363636365,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": true,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal"
+        ],
+        "empty_list": [
+          "[]/()/set() empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ]
+      }
+    },
+    {
+      "id": "preprocess_weights_for_loading_22",
+      "function_name": "preprocess_weights_for_loading",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.45454545454545453,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_list": [
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ]
+      }
+    },
+    {
+      "id": "preprocess_weights_for_loading_23",
+      "function_name": "preprocess_weights_for_loading",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.18181818181818182,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ]
+      }
+    },
+    {
+      "id": "communicate_24",
+      "function_name": "communicate",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.36363636363636365,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\""
+        ],
+        "zero": [
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ]
+      }
+    },
+    {
+      "id": "communicate_25",
+      "function_name": "communicate",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.45454545454545453,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal",
+          "0 literal",
+          "0 literal"
+        ],
+        "boundary": [
+          "parametrize",
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "communicate_26",
+      "function_name": "communicate",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": false,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "zero": [
+          "0 literal"
+        ],
+        "raises": [
+          "pytest.raises"
+        ]
+      }
+    },
+    {
+      "id": "validate_option_27",
+      "function_name": "_validate_option",
+      "prompt_strategy": "baseline_name_only",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": false,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": true,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\""
+        ],
+        "raises": [
+          "pytest.raises"
+        ]
+      }
+    },
+    {
+      "id": "validate_option_28",
+      "function_name": "_validate_option",
+      "prompt_strategy": "advanced_with_code",
+      "used_code": "repaired",
+      "score": 0.45454545454545453,
+      "covered": {
+        "none": false,
+        "empty_string": true,
+        "empty_list": true,
+        "empty_dict": true,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": true
+      },
+      "evidence": {
+        "empty_string": [
+          "\"\""
+        ],
+        "empty_list": [
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty",
+          "[]/()/set() empty"
+        ],
+        "empty_dict": [
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty",
+          "{} empty"
+        ],
+        "zero": [
+          "0 literal"
+        ],
+        "boundary": [
+          "parametrize",
+          "parametrize"
+        ]
+      }
+    },
+    {
+      "id": "validate_option_29",
+      "function_name": "_validate_option",
+      "prompt_strategy": "strict_import_focal_module",
+      "used_code": "repaired",
+      "score": 0.2727272727272727,
+      "covered": {
+        "none": true,
+        "empty_string": true,
+        "empty_list": false,
+        "empty_dict": false,
+        "zero": true,
+        "negative": false,
+        "large_number": false,
+        "unicode": false,
+        "nan_inf": false,
+        "raises": false,
+        "boundary": false
+      },
+      "evidence": {
+        "none": [
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal",
+          "None literal"
+        ],
+        "empty_string": [
+          "\"\"",
+          "\"\""
+        ],
+        "zero": [
+          "0 literal",
+          "0 literal"
+        ]
+      }
+    }
+  ]
+}

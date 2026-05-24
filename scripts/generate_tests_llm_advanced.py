@@ -1,10 +1,11 @@
-
 import json
 import ollama
 
+from prompt_strategies import load_strategies  # NEW
+
 # INPUT / OUTPUT FILES
-INPUT_FILE = "results/sampled_methods.json"
-OUTPUT_FILE = "results/generated_tests_advanced.json"
+INPUT_FILE = "results/sampled_methods_with_code.json"
+OUTPUT_FILE = "results/generated_tests_by_strategy.json"  # CHANGED to unified output
 
 print("Loading sampled methods...")
 
@@ -13,7 +14,6 @@ with open(INPUT_FILE) as f:
 
 results = []
 
-# EDGE CASE GENERATOR (based on method name)
 def get_edge_cases(method_name):
     method_name = method_name.lower()
 
@@ -28,64 +28,57 @@ def get_edge_cases(method_name):
     else:
         return ["None", "0"]
 
-# LOOP THROUGH METHODS
-TOTAL = 100   # you can increase later (100 recommended)
+strategies = load_strategies()
+print(f"Loaded {len(strategies)} prompt strategies.")
 
-for i, m in enumerate(methods[:TOTAL]):
+TOTAL = len(methods)
 
+for i, m in enumerate(methods):
     method_name = m.get("method_name", "unknown_function")
     method_code = m.get("method_code", "")
 
     edge_cases = get_edge_cases(method_name)
 
-    # BUILD ADVANCED PROMPT
-    prompt = f"""
-You are a professional Python developer.
-
-{"Here is the function:\n" + method_code if method_code else f"Function name: {method_name}"}
-
-Generate pytest unit tests.
-
-Requirements:
-- Include normal test cases
-- Include edge cases:
-  - zero values
-  - negative values
-  - empty inputs
-  - invalid inputs
-  - boundary conditions
-  - large inputs
-- Also include these specific edge cases: {edge_cases}
-- Use multiple assertions
-- Use pytest.mark.parametrize where possible
-- Create multiple test functions (not just one)
-
-STRICT RULES:
-- Output ONLY valid Python pytest code
-- Do NOT include explanations outside code
-- Add explanation ONLY as comments (#) inside tests
-- Each test function must include at least 2 assertions
-"""
-
-    print(f"Generating test {i+1}/{TOTAL}...")
-
-    try:
-        response = ollama.chat(
-            model="llama3",
-            messages=[{"role": "user", "content": prompt}]
+    for strat in strategies:
+        # Add edge_cases into any template that wants it (safe even if not used)
+        prompt = strat.prompt_template.format(
+            function_name=method_name,
+            method_code=method_code,
+            edge_cases=edge_cases,
         )
 
-        test_code = response["message"]["content"]
+        # If a strategy does not mention edge cases, we append a small clause (so "advanced" stays advanced)
+        if "{edge_cases}" not in strat.prompt_template:
+            prompt = prompt + f"\n\nSpecific edge cases to include where applicable: {edge_cases}\n"
 
-        results.append({
-            "method_name": method_name,
-            "generated_test": test_code
-        })
+        print(f"Generating {i+1}/{TOTAL} | strategy={strat.id}...")
 
-    except Exception as e:
-        print(f"Error generating test {i+1}:", e)
+        try:
+            response = ollama.chat(
+                model="llama3",
+                messages=[{"role": "user", "content": prompt}],
+                options={"temperature": strat.temperature},
+            )
 
-# SAVE OUTPUT
+            test_code = response["message"]["content"]
+
+            results.append(
+                {
+                    "method_name": method_name,
+                    "method_code": method_code,
+                    "prompt_strategy": strat.id,
+                    "prompt_strategy_name": strat.name,
+                    "model": "llama3",
+                    "temperature": strat.temperature,
+                    "edge_cases_hint": edge_cases,
+                    "prompt_used": prompt,
+                    "generated_test": test_code,
+                }
+            )
+
+        except Exception as e:
+            print(f"Error generating {i+1}/{TOTAL} (strategy={strat.id}):", e)
+
 with open(OUTPUT_FILE, "w") as f:
     json.dump(results, f, indent=2)
 

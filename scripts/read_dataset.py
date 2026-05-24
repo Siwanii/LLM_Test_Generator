@@ -1,7 +1,7 @@
 import os
 import json
 
-dataset_path = "/Users/pradeep/Documents/LLM_Test_Generator_Project/pymethods2test/data"
+dataset_path = "pymethods2test/data"
 
 json_count = 0
 
