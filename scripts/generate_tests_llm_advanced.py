@@ -1,4 +1,5 @@
 import json
+import time
 import ollama
 
 from prompt_strategies import load_strategies  # NEW
@@ -32,6 +33,9 @@ strategies = load_strategies()
 print(f"Loaded {len(strategies)} prompt strategies.")
 
 TOTAL = len(methods)
+TOTAL_TASKS = TOTAL * len(strategies)
+task_num = 0
+start_time = time.time()
 
 for i, m in enumerate(methods):
     method_name = m.get("method_name", "unknown_function")
@@ -51,7 +55,10 @@ for i, m in enumerate(methods):
         if "{edge_cases}" not in strat.prompt_template:
             prompt = prompt + f"\n\nSpecific edge cases to include where applicable: {edge_cases}\n"
 
-        print(f"Generating {i+1}/{TOTAL} | strategy={strat.id}...")
+        task_num += 1
+        pct = task_num * 100 // TOTAL_TASKS
+        elapsed = time.time() - start_time
+        print(f"[{pct:3d}%] {task_num}/{TOTAL_TASKS} | method {i+1}/{TOTAL} | strategy={strat.id} | elapsed={elapsed:.1f}s")
 
         try:
             response = ollama.chat(
@@ -82,6 +89,8 @@ for i, m in enumerate(methods):
 with open(OUTPUT_FILE, "w") as f:
     json.dump(results, f, indent=2)
 
-print("\n✅ Generation Complete")
-print("Generated tests:", len(results))
-print("Saved to:", OUTPUT_FILE)
+total_time = time.time() - start_time
+print(f"\n✅ Generation Complete in {total_time:.1f}s")
+print(f"Generated tests: {len(results)}")
+print(f"Avg time per test: {total_time / max(len(results), 1):.1f}s")
+print(f"Saved to: {OUTPUT_FILE}")

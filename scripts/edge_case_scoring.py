@@ -94,6 +94,9 @@ def _find_literals_and_calls(code: str) -> Dict[str, List[str]]:
                 out["empty_string"].append('""')
             if any(ord(ch) > 127 for ch in node.value):
                 out["unicode"].append("unicode string literal")
+            # detect unicode escape sequences in string content
+            if re.search(r'\\u[0-9a-fA-F]{4}|\\x[0-9a-fA-F]{2}', node.value):
+                out["unicode"].append("unicode escape in string")
 
         # numbers
         if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
@@ -107,6 +110,11 @@ def _find_literals_and_calls(code: str) -> Dict[str, List[str]]:
 
             if isinstance(val, float) and (math.isinf(val) or math.isnan(val)):
                 out["nan_inf"].append(f"{val}")
+
+        # Detect negative via UnaryOp(USub) — catches -1, -0.5, etc.
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub):
+            if isinstance(node.operand, ast.Constant) and isinstance(node.operand.value, (int, float)):
+                out["negative"].append(f"-{node.operand.value} (unary)")
 
         # empty containers
         if isinstance(node, (ast.List, ast.Tuple, ast.Set)) and len(node.elts) == 0:
@@ -155,6 +163,26 @@ def main(
             )
         )
 
+    # Per-strategy summary
+    from collections import defaultdict
+    per_strat = defaultdict(lambda: {"scores": [], "covered": defaultdict(int), "total": 0})
+    for x in scored:
+        s = x.prompt_strategy
+        per_strat[s]["scores"].append(x.score)
+        per_strat[s]["total"] += 1
+        for cat, hit in x.covered.items():
+            if hit:
+                per_strat[s]["covered"][cat] += 1
+
+    per_strategy_summary = {}
+    for s, data in per_strat.items():
+        t = data["total"]
+        per_strategy_summary[s] = {
+            "avg_score": sum(data["scores"]) / t if t else 0.0,
+            "total": t,
+            "category_coverage_rate": {k: data["covered"].get(k, 0) / t if t else 0.0 for k in EDGE_CATEGORIES},
+        }
+
     summary = {
         "total": len(scored),
         "avg_score": sum(x.score for x in scored) / len(scored) if scored else 0.0,
@@ -162,6 +190,7 @@ def main(
             k: (sum(1 for x in scored if x.covered.get(k)) / len(scored) if scored else 0.0)
             for k in EDGE_CATEGORIES
         },
+        "per_strategy": per_strategy_summary,
     }
 
     payload = {"summary": summary, "items": [asdict(x) for x in scored]}

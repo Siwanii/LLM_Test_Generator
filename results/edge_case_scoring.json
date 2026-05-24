@@ -1,19 +1,72 @@
 {
   "summary": {
     "total": 30,
-    "avg_score": 0.3606060606060606,
+    "avg_score": 0.3969696969696969,
     "category_coverage_rate": {
       "none": 0.9333333333333333,
       "empty_string": 0.3333333333333333,
       "empty_list": 0.4,
       "empty_dict": 0.36666666666666664,
       "zero": 0.9333333333333333,
-      "negative": 0.0,
+      "negative": 0.4,
       "large_number": 0.1,
       "unicode": 0.0,
       "nan_inf": 0.03333333333333333,
       "raises": 0.4,
       "boundary": 0.4666666666666667
+    },
+    "per_strategy": {
+      "baseline_name_only": {
+        "avg_score": 0.3363636363636363,
+        "total": 10,
+        "category_coverage_rate": {
+          "none": 0.9,
+          "empty_string": 0.4,
+          "empty_list": 0.2,
+          "empty_dict": 0.0,
+          "zero": 0.9,
+          "negative": 0.3,
+          "large_number": 0.2,
+          "unicode": 0.0,
+          "nan_inf": 0.1,
+          "raises": 0.5,
+          "boundary": 0.2
+        }
+      },
+      "advanced_with_code": {
+        "avg_score": 0.6272727272727272,
+        "total": 10,
+        "category_coverage_rate": {
+          "none": 0.9,
+          "empty_string": 0.5,
+          "empty_list": 1.0,
+          "empty_dict": 1.0,
+          "zero": 1.0,
+          "negative": 0.9,
+          "large_number": 0.1,
+          "unicode": 0.0,
+          "nan_inf": 0.0,
+          "raises": 0.6,
+          "boundary": 0.9
+        }
+      },
+      "strict_import_focal_module": {
+        "avg_score": 0.22727272727272724,
+        "total": 10,
+        "category_coverage_rate": {
+          "none": 1.0,
+          "empty_string": 0.1,
+          "empty_list": 0.0,
+          "empty_dict": 0.1,
+          "zero": 0.9,
+          "negative": 0.0,
+          "large_number": 0.0,
+          "unicode": 0.0,
+          "nan_inf": 0.0,
+          "raises": 0.1,
+          "boundary": 0.3
+        }
+      }
     }
   },
   "items": [
@@ -22,14 +75,14 @@
       "function_name": "add_image",
       "prompt_strategy": "baseline_name_only",
       "used_code": "repaired",
-      "score": 0.2727272727272727,
+      "score": 0.36363636363636365,
       "covered": {
         "none": false,
         "empty_string": false,
         "empty_list": false,
         "empty_dict": false,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": true,
         "unicode": false,
         "nan_inf": false,
@@ -43,6 +96,13 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-2 (unary)",
+          "-3 (unary)",
+          "-1 (unary)",
+          "-1 (unary)"
         ],
         "large_number": [
           "1000000 literal",
@@ -59,14 +119,14 @@
       "function_name": "add_image",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.7272727272727273,
+      "score": 0.8181818181818182,
       "covered": {
         "none": true,
         "empty_string": true,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": true,
         "unicode": false,
         "nan_inf": false,
@@ -99,6 +159,11 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-3 (unary)",
+          "-1 (unary)",
+          "-2 (unary)"
         ],
         "large_number": [
           "2000000 literal",
@@ -187,14 +252,14 @@
       "function_name": "get_absolute_url",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.5454545454545454,
+      "score": 0.6363636363636364,
       "covered": {
         "none": true,
         "empty_string": true,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -229,6 +294,10 @@
         "zero": [
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-1 (unary)"
         ],
         "boundary": [
           "parametrize"
@@ -304,14 +373,14 @@
       "function_name": "set_group_privacy",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.6363636363636364,
+      "score": 0.7272727272727273,
       "covered": {
         "none": true,
         "empty_string": true,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -344,6 +413,9 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)"
         ],
         "raises": [
           "pytest.raises"
@@ -425,14 +497,14 @@
       "function_name": "type_name",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.6363636363636364,
+      "score": 0.7272727272727273,
       "covered": {
         "none": true,
         "empty_string": true,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -468,6 +540,13 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-2 (unary)",
+          "-3 (unary)",
+          "-1 (unary)",
+          "-2 (unary)"
         ],
         "raises": [
           "pytest.raises"
@@ -557,14 +636,14 @@
       "function_name": "find_vulns",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.5454545454545454,
+      "score": 0.6363636363636364,
       "covered": {
         "none": true,
         "empty_string": false,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -597,6 +676,10 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-1 (unary)"
         ],
         "raises": [
           "pytest.raises"
@@ -645,14 +728,14 @@
       "function_name": "std",
       "prompt_strategy": "baseline_name_only",
       "used_code": "repaired",
-      "score": 0.36363636363636365,
+      "score": 0.45454545454545453,
       "covered": {
         "none": true,
         "empty_string": false,
         "empty_list": false,
         "empty_dict": false,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": true,
@@ -669,6 +752,13 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-0.0 (unary)",
+          "-1.0 (unary)",
+          "-10000000000.0 (unary)",
+          "-1e-10 (unary)"
         ],
         "nan_inf": [
           "inf",
@@ -687,14 +777,14 @@
       "function_name": "std",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.45454545454545453,
+      "score": 0.5454545454545454,
       "covered": {
         "none": true,
         "empty_string": false,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -725,6 +815,10 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-1 (unary)"
         ],
         "boundary": [
           "parametrize"
@@ -893,14 +987,14 @@
       "function_name": "preprocess_weights_for_loading",
       "prompt_strategy": "baseline_name_only",
       "used_code": "repaired",
-      "score": 0.36363636363636365,
+      "score": 0.45454545454545453,
       "covered": {
         "none": true,
         "empty_string": false,
         "empty_list": true,
         "empty_dict": false,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -918,6 +1012,10 @@
           "0 literal",
           "0 literal"
         ],
+        "negative": [
+          "-1 (unary)",
+          "-1 (unary)"
+        ],
         "raises": [
           "pytest.raises"
         ]
@@ -928,14 +1026,14 @@
       "function_name": "preprocess_weights_for_loading",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.45454545454545453,
+      "score": 0.5454545454545454,
       "covered": {
         "none": true,
         "empty_string": false,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -962,6 +1060,13 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-1 (unary)",
+          "-2 (unary)",
+          "-1 (unary)",
+          "-1 (unary)"
         ],
         "raises": [
           "pytest.raises"
@@ -1043,14 +1148,14 @@
       "function_name": "communicate",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.45454545454545453,
+      "score": 0.5454545454545454,
       "covered": {
         "none": true,
         "empty_string": false,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -1083,6 +1188,10 @@
           "0 literal",
           "0 literal",
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)",
+          "-1 (unary)"
         ],
         "boundary": [
           "parametrize",
@@ -1164,14 +1273,14 @@
       "function_name": "_validate_option",
       "prompt_strategy": "advanced_with_code",
       "used_code": "repaired",
-      "score": 0.45454545454545453,
+      "score": 0.5454545454545454,
       "covered": {
         "none": false,
         "empty_string": true,
         "empty_list": true,
         "empty_dict": true,
         "zero": true,
-        "negative": false,
+        "negative": true,
         "large_number": false,
         "unicode": false,
         "nan_inf": false,
@@ -1198,6 +1307,9 @@
         ],
         "zero": [
           "0 literal"
+        ],
+        "negative": [
+          "-1 (unary)"
         ],
         "boundary": [
           "parametrize",
