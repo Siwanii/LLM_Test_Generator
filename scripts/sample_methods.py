@@ -4,7 +4,7 @@ import random
 INPUT_FILE = "results/extracted_methods.json"
 OUTPUT_FILE = "results/sampled_methods.json"
 
-SAMPLE_SIZE = 10
+SAMPLE_SIZE = 34  # 34 methods × 3 strategies = 102 tests
 
 print("Loading extracted methods...")
 

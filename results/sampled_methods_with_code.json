@@ -1,82 +1,274 @@
 [
   {
-    "source_file": "cinder/volume/drivers/emc/vnx/client.py",
-    "method_name": "add_image",
-    "start_line": 539,
+    "source_file": "ebcli/core/fileoperations.py",
+    "method_name": "get_ssh_folder",
+    "start_line": 56,
+    "end_line": 62,
+    "method_code": "def get_ssh_folder(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "braindecode/braindecode/venv1/Lib/site-packages/pandas/core/sparse/frame.py",
+    "method_name": "cumsum",
+    "start_line": 804,
+    "end_line": 822,
+    "method_code": "def cumsum(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "pyreds/reds.py",
+    "method_name": "_metaphone_keys",
+    "start_line": 126,
+    "end_line": 127,
+    "method_code": "def _metaphone_keys(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv/Lib/site-packages/sklearn/metrics/classification.py",
+    "method_name": "matthews_corrcoef",
+    "start_line": 464,
+    "end_line": 548,
+    "method_code": "def matthews_corrcoef(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "problems/N1401_Circle_And_Rectangle_Overlapping.py",
+    "method_name": "checkOverlap",
+    "start_line": 2,
+    "end_line": 36,
+    "method_code": "def checkOverlap(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv/Lib/site-packages/pandas/core/sorting.py",
+    "method_name": "is_int64_overflow_possible",
+    "start_line": 127,
+    "end_line": 132,
+    "method_code": "def is_int64_overflow_possible(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "quara/protocol/qtomography/standard/standard_qpt.py",
+    "method_name": "generate_empi_dist",
+    "start_line": 120,
+    "end_line": 156,
+    "method_code": "def generate_empi_dist(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "nineties/parser.py",
+    "method_name": "parse_timestamp",
+    "start_line": 25,
+    "end_line": 47,
+    "method_code": "def parse_timestamp(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "src/spectrum/calculations/numeric.py",
+    "method_name": "filter_divisors",
+    "start_line": 69,
+    "end_line": 95,
+    "method_code": "def filter_divisors(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv/Lib/site-packages/pandas/core/dtypes/common.py",
+    "method_name": "is_datetime64_any_dtype",
+    "start_line": 1163,
+    "end_line": 1200,
+    "method_code": "def is_datetime64_any_dtype(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "incubator-tvm/python/tvm/contrib/nnpack.py",
+    "method_name": "convolution_inference",
+    "start_line": 69,
+    "end_line": 119,
+    "method_code": "def convolution_inference(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "citam/engine/map/ingester.py",
+    "method_name": "_find_all_overlapping_walls",
+    "start_line": 364,
+    "end_line": 397,
+    "method_code": "def _find_all_overlapping_walls(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv/lib/python3.6/site-packages/numpy/ma/core.py",
+    "method_name": "dot",
+    "start_line": 7547,
+    "end_line": 7626,
+    "method_code": "def dot(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv/lib/python3.6/site-packages/Cryptodome/PublicKey/ECC.py",
+    "method_name": "has_private",
+    "start_line": 314,
+    "end_line": 317,
+    "method_code": "def has_private(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "Integrator/__init__.py",
+    "method_name": "create_of_get_conf",
+    "start_line": 315,
+    "end_line": 340,
+    "method_code": "def create_of_get_conf(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "ledgers/utils.py",
+    "method_name": "make_decimal",
+    "start_line": 137,
+    "end_line": 143,
+    "method_code": "def make_decimal(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "cvra_packager/packager.py",
+    "method_name": "download_dependencies",
+    "start_line": 99,
+    "end_line": 124,
+    "method_code": "def download_dependencies(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv/Lib/site-packages/scipy/sparse/linalg/_onenormest.py",
+    "method_name": "_onenormest_core",
+    "start_line": 325,
+    "end_line": 468,
+    "method_code": "def _onenormest_core(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "keras/backend/cntk_backend.py",
+    "method_name": "bias_add",
+    "start_line": 166,
+    "end_line": 216,
+    "method_code": "def bias_add(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "src/venv/lib/python3.6/site-packages/scipy/special/orthogonal.py",
+    "method_name": "roots_sh_jacobi",
+    "start_line": 351,
+    "end_line": 404,
+    "method_code": "def roots_sh_jacobi(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "biomajmanager/manager.py",
+    "method_name": "can_switch",
+    "start_line": 140,
+    "end_line": 168,
+    "method_code": "def can_switch(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "abagen/probes_.py",
+    "method_name": "_average",
+    "start_line": 416,
+    "end_line": 445,
+    "method_code": "def _average(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "venv2/Lib/site-packages/scipy/stats/stats.py",
+    "method_name": "brunnermunzel",
+    "start_line": 5959,
+    "end_line": 6089,
+    "method_code": "def brunnermunzel(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "lib/python3.6/site-packages/numpy/ma/core.py",
+    "method_name": "set_fill_value",
+    "start_line": 483,
     "end_line": 545,
-    "method_code": "def add_image(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code": "def set_fill_value(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "everycheese/users/models.py",
-    "method_name": "get_absolute_url",
-    "start_line": 17,
-    "end_line": 20,
-    "method_code": "def get_absolute_url(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "privacyidea/lib/resolver.py",
+    "method_name": "get_resolver_object",
+    "start_line": 315,
+    "end_line": 342,
+    "method_code": "def get_resolver_object(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "gs/group/start/groupcreator.py",
-    "method_name": "set_group_privacy",
-    "start_line": 223,
-    "end_line": 242,
-    "method_code": "def set_group_privacy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "venv/Lib/site-packages/pandas/core/window.py",
+    "method_name": "expanding",
+    "start_line": 2475,
+    "end_line": 2479,
+    "method_code": "def expanding(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "glean_parser/csharp.py",
-    "method_name": "type_name",
-    "start_line": 74,
-    "end_line": 92,
-    "method_code": "def type_name(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "venv/lib/python3.7/site-packages/numpy/ma/core.py",
+    "method_name": "maximum_fill_value",
+    "start_line": 356,
+    "end_line": 404,
+    "method_code": "def maximum_fill_value(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "w3af/core/controllers/csp/utils.py",
-    "method_name": "find_vulns",
-    "start_line": 118,
-    "end_line": 346,
-    "method_code": "def find_vulns(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "env/lib/python3.4/site-packages/setuptools/package_index.py",
+    "method_name": "parse_bdist_wininst",
+    "start_line": 46,
+    "end_line": 67,
+    "method_code": "def parse_bdist_wininst(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "venv/Lib/site-packages/numpy/ma/core.py",
-    "method_name": "std",
-    "start_line": 5363,
-    "end_line": 5385,
-    "method_code": "def std(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "FMRI/venv/Lib/site-packages/pandas/io/formats/style.py",
+    "method_name": "clear",
+    "start_line": 487,
+    "end_line": 492,
+    "method_code": "def clear(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "dockerfiles/docker-compose/compose/service.py",
-    "method_name": "create_container",
-    "start_line": 255,
-    "end_line": 279,
-    "method_code": "def create_container(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "CTCI/Chapter8/03-magic-index.py",
+    "method_name": "magic_index",
+    "start_line": 23,
+    "end_line": 28,
+    "method_code": "def magic_index(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "keras/keras/engine/saving.py",
-    "method_name": "preprocess_weights_for_loading",
-    "start_line": 771,
-    "end_line": 989,
-    "method_code": "def preprocess_weights_for_loading(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "test_sharder_4.py",
+    "method_name": "_check_cleave_root",
+    "start_line": 846,
+    "end_line": 1204,
+    "method_code": "def _check_cleave_root(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "src/gevent/subprocess.py",
-    "method_name": "communicate",
-    "start_line": 957,
-    "end_line": 1020,
-    "method_code": "def communicate(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "venv/lib/python3.7/site-packages/matplotlib/colors.py",
+    "method_name": "_resample",
+    "start_line": 590,
+    "end_line": 594,
+    "method_code": "def _resample(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   },
   {
-    "source_file": "ansible/ansible_tool/lib/ansible/plugins/inventory/linode.py",
-    "method_name": "_validate_option",
-    "start_line": 144,
-    "end_line": 159,
-    "method_code": "def _validate_option(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "source_file": "HiCH_StorageNode/swift/obj/auditor.py",
+    "method_name": "object_audit",
+    "start_line": 179,
+    "end_line": 216,
+    "method_code": "def object_audit(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
+    "method_code_source": "synthetic_fallback"
+  },
+  {
+    "source_file": "wcs/services/client.py",
+    "method_name": "copy",
+    "start_line": 131,
+    "end_line": 136,
+    "method_code": "def copy(*args, **kwargs):\n    \"\"\"Synthetic method for testing (not found in dataset).\"\"\"\n    return None\n",
     "method_code_source": "synthetic_fallback"
   }
 ]

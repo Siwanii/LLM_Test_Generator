@@ -1,4 +1,5 @@
 import json
+import re
 import time
 import ollama
 
@@ -14,6 +15,26 @@ with open(INPUT_FILE) as f:
     methods = json.load(f)
 
 results = []
+
+def extract_code(raw_text):
+    """Pull just the Python code out of LLM responses.
+    The model often wraps code in ```python ... ``` fences and adds
+    explanatory prose. We want only the code block.
+    """
+    # Try to find a fenced code block first (```python ... ``` or ``` ... ```)
+    match = re.search(r"```(?:python)?\n?(.*?)```", raw_text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+
+    # If no fences, try to find the first 'import' or 'def ' line and take everything from there
+    lines = raw_text.splitlines()
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith(("import ", "from ", "def ", "class ", "@")):
+            return "\n".join(lines[idx:]).strip()
+
+    # Fallback: return as-is (better than nothing)
+    return raw_text.strip()
 
 def get_edge_cases(method_name):
     method_name = method_name.lower()
@@ -67,7 +88,8 @@ for i, m in enumerate(methods):
                 options={"temperature": strat.temperature},
             )
 
-            test_code = response["message"]["content"]
+            raw = response["message"]["content"]
+            test_code = extract_code(raw)  # strip prose & markdown fences
 
             results.append(
                 {

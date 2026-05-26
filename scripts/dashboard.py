@@ -46,55 +46,87 @@ html, body, [class*="css"] {
 .hero h1 { margin: 0; font-weight: 800; font-size: 1.9rem; }
 .hero p  { margin: 0.3rem 0 0; opacity: 0.9; font-size: 1rem; }
 
-/* Metric cards with soft shadows */
+/* Metric cards */
 .card {
     background: white;
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 1.2rem 1.4rem;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-top: 4px solid #e2e8f0;
     margin-bottom: 0.8rem;
+    position: relative;
 }
+.card.green  { border-top-color: #10b981; }
+.card.red    { border-top-color: #ef4444; }
+.card.purple { border-top-color: #8b5cf6; }
+.card.amber  { border-top-color: #f59e0b; }
+.card.blue   { border-top-color: #3b82f6; }
 .card h3 {
     color: #64748b;
-    font-size: 0.78rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 0 0 0.3rem;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.35rem;
 }
 .card .num {
     color: #1e293b;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1.1;
 }
-.card .detail {
-    color: #94a3b8;
-    font-size: 0.8rem;
-    margin-top: 0.2rem;
+.card .detail { color: #94a3b8; font-size: 0.8rem; margin-top: 0.25rem; }
+.card .bar-bg {
+    background: #f1f5f9;
+    border-radius: 99px;
+    height: 5px;
+    margin-top: 0.6rem;
+    overflow: hidden;
+}
+.card .bar-fill {
+    height: 5px;
+    border-radius: 99px;
+    transition: width 0.5s ease;
 }
 
 /* Insight boxes */
 .tip {
     background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
+    border-left: 4px solid #10b981;
+    border-radius: 0 10px 10px 0;
+    padding: 0.9rem 1.1rem;
     color: #166534;
     margin-bottom: 0.6rem;
     font-size: 0.92rem;
 }
+.tip.amber { background:#fffbeb; border-color:#f59e0b; color:#92400e; }
+.tip.red   { background:#fff1f2; border-color:#ef4444; color:#9f1239; }
 
 /* Section titles */
 .section-title {
     color: #1e293b;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    margin: 1.5rem 0 0.6rem;
-    padding-bottom: 0.3rem;
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.4rem;
     border-bottom: 2px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
+
+/* Pill badge */
+.pill {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-left: 0.4rem;
+}
+.pill.green  { background: #dcfce7; color: #166534; }
+.pill.red    { background: #fee2e2; color: #991b1b; }
+.pill.purple { background: #ede9fe; color: #5b21b6; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -194,29 +226,29 @@ repair_success = summary["repair_success"]
 avg_duration = summary["avg_duration_sec"]
 avg_edge = edge_summary.get("avg_score", 0)
 
-def make_card(icon, label, value, detail=""):
-    return f"""<div class="card">
-        <h3>{icon} {label}</h3>
-        <div class="num">{value}</div>
-        <div class="detail">{detail}</div>
-    </div>"""
+def make_card(icon, label, value, detail="", color="", pct=None, bar_color="#10b981"):
+    bar_html = ""
+    if pct is not None:
+        bar_html = f'<div class="bar-bg"><div class="bar-fill" style="width:{pct}%;background:{bar_color}"></div></div>'
+    return f'<div class="card {color}"><h3>{icon} {label}</h3><div class="num">{value}</div><div class="detail">{detail}</div>{bar_html}</div>'
 
 c1, c2, c3, c4, c5 = st.columns(5)
 
 pass_pct = passed * 100 // total if total else 0
 fail_pct = failed * 100 // total if total else 0
 repair_pct = repair_success * 100 // repair_attempted if repair_attempted else 0
+edge_pct  = int(avg_edge * 100)
 
 with c1:
-    st.markdown(make_card("✅", "Pass Rate", f"{passed}/{total}", f"{pass_pct}% overall"), unsafe_allow_html=True)
+    st.markdown(make_card("✅", "Pass Rate", f"{passed}/{total}", f"{pass_pct}% of all tests", "green", pass_pct, "#10b981"), unsafe_allow_html=True)
 with c2:
-    st.markdown(make_card("❌", "Failed", str(failed), f"{fail_pct}% unresolved"), unsafe_allow_html=True)
+    st.markdown(make_card("❌", "Failed", str(failed), f"{fail_pct}% unresolved", "red", fail_pct, "#ef4444"), unsafe_allow_html=True)
 with c3:
-    st.markdown(make_card("🔧", "Repair Success", f"{repair_success}/{repair_attempted}", f"{repair_pct}% fix rate"), unsafe_allow_html=True)
+    st.markdown(make_card("🔧", "Repair Success", f"{repair_success}/{repair_attempted}", f"{repair_pct}% fixed by LLM", "purple", repair_pct, "#8b5cf6"), unsafe_allow_html=True)
 with c4:
-    st.markdown(make_card("⏱️", "Avg Duration", f"{avg_duration:.2f}s", "per test"), unsafe_allow_html=True)
+    st.markdown(make_card("⏱️", "Avg Duration", f"{avg_duration:.2f}s", "per test execution", "amber"), unsafe_allow_html=True)
 with c5:
-    st.markdown(make_card("🎯", "Edge Score", f"{avg_edge:.0%}", f"across {len(edge_items)} tests"), unsafe_allow_html=True)
+    st.markdown(make_card("🎯", "Edge Score", f"{avg_edge:.0%}", f"across {len(edge_items)} tests", "blue", edge_pct, "#3b82f6"), unsafe_allow_html=True)
 
 
 # --- Auto-generated insights ---
@@ -251,11 +283,11 @@ top_error = max((k for k in error_cats if k != "passed_after_repair"), key=lambd
 
 c1, c2, c3 = st.columns(3)
 with c1:
-    st.markdown(f'<div class="tip">🏆 <strong>Best strategy:</strong> {best_strategy} — {best_pct}% pass rate</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="tip">🏆 <strong>Best strategy:</strong> {best_strategy}<br><span style="font-size:1.3rem;font-weight:800">{best_pct}%</span> pass rate</div>', unsafe_allow_html=True)
 with c2:
-    st.markdown(f'<div class="tip">🎯 <strong>Best edge coverage:</strong> {best_edge_strat} — {best_edge_avg:.0%} avg</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="tip amber">🎯 <strong>Best edge coverage:</strong> {best_edge_strat}<br><span style="font-size:1.3rem;font-weight:800">{best_edge_avg:.0%}</span> avg score</div>', unsafe_allow_html=True)
 with c3:
-    st.markdown(f'<div class="tip">⚠️ <strong>Top error:</strong> {top_error} — {error_cats.get(top_error, 0)} occurrences</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="tip red">⚠️ <strong>Top error type:</strong> {top_error}<br><span style="font-size:1.3rem;font-weight:800">{error_cats.get(top_error, 0)}</span> occurrences</div>', unsafe_allow_html=True)
 
 
 # --- Strategy comparison charts ---
@@ -290,10 +322,17 @@ with col_left:
         text=[strat_stats[s]["failed"] - strat_stats[s]["repaired"] for s in strat_names],
         textposition="outside"
     ))
+    # Add pass-rate % annotation on top of each group
+    for s in strat_names:
+        pct_s = strat_stats[s]["passed"] * 100 // max(strat_stats[s]["total"], 1)
+        fig.add_annotation(x=s, y=strat_stats[s]["total"] + 1.5,
+                           text=f"<b>{pct_s}% pass</b>", showarrow=False,
+                           font=dict(size=11, color="#334155"))
     fig.update_layout(**chart_style(
         title="Pass / Repair / Fail by Strategy",
-        barmode="group", height=420,
-        legend=dict(orientation="h", y=-0.15)
+        barmode="group", height=440,
+        legend=dict(orientation="h", y=-0.15),
+        yaxis=dict(gridcolor="#f1f5f9", title="Test Count"),
     ))
     st.plotly_chart(fig, width='stretch')
 
@@ -429,130 +468,207 @@ with col_right:
 
 st.markdown('<div class="section-title">🗺️ Heatmaps</div>', unsafe_allow_html=True)
 
-col_left, col_right = st.columns(2)
+# Scale height with number of functions so rows are readable
+num_funcs = len({r.get("function_name") for r in filtered})
+heatmap_height = max(500, 120 + num_funcs * 28)
 
-# Heatmap: which function passed/failed/was repaired under each strategy
-with col_left:
-    heatmap_data = {}
-    for r in filtered:
-        fn = r.get("function_name", "?")
-        strat = r.get("prompt_strategy", "?")
-        # 2 = passed first try, 1 = repaired, 0 = failed
-        if r.get("passed") and not r.get("repair_success"):
-            val = 2
-        elif r.get("repair_success"):
-            val = 1
-        else:
-            val = 0
-        heatmap_data.setdefault(fn, {})[strat] = val
+# Font size for cell labels: shrinks as dataset grows, but always visible
+cell_font = max(8, 13 - max(0, num_funcs - 10))
 
-    if heatmap_data:
-        df_heat = pd.DataFrame(heatmap_data).T.fillna(-1)
-        fig = go.Figure(go.Heatmap(
-            z=df_heat.values,
-            x=df_heat.columns.tolist(),
-            y=df_heat.index.tolist(),
-            colorscale=[[0, "#fecaca"], [0.5, "#c4b5fd"], [1, "#86efac"]],
-            text=[["Pass" if v == 2 else "Repair" if v == 1 else "Fail" for v in row] for row in df_heat.values],
-            texttemplate="%{text}",
-            zmin=0, zmax=2, showscale=False,
-        ))
-        fig.update_layout(**chart_style(
-            title="Function × Strategy Outcome",
-            height=420,
-            yaxis=dict(gridcolor="#f1f5f9", dtick=1),
-            xaxis=dict(gridcolor="#f1f5f9"),
-        ))
-        st.plotly_chart(fig, width='stretch')
+# y-axis label font also scales down for large datasets
+y_font_size = max(9, 14 - max(0, num_funcs - 15))
 
-# Heatmap: edge-case coverage per function
-with col_right:
-    if edge_items:
-        edge_heat = {}
-        for item in edge_items:
-            fn = item.get("function_name", "?")
-            for cat, hit in item.get("covered", {}).items():
-                edge_heat.setdefault(fn, {})[cat] = edge_heat.get(fn, {}).get(cat, 0) + (1 if hit else 0)
+# --- Heatmap 1: Function × Strategy outcome (full width) ---
+heatmap_data = {}
+for r in filtered:
+    fn = r.get("function_name", "?")
+    strat = r.get("prompt_strategy", "?")
+    # 2 = passed first try, 1 = repaired, 0 = failed
+    if r.get("passed") and not r.get("repair_success"):
+        val = 2
+    elif r.get("repair_success"):
+        val = 1
+    else:
+        val = 0
+    heatmap_data.setdefault(fn, {})[strat] = val
 
-        df_edge = pd.DataFrame(edge_heat).T.fillna(0)
-        # Normalize by number of strategies so values are 0-1
-        df_edge = df_edge / max(len(all_strategies), 1)
+if heatmap_data:
+    df_heat = pd.DataFrame(heatmap_data).T.fillna(-1)
+    label_matrix = [["Pass" if v == 2 else "Repair" if v == 1 else "Fail" for v in row] for row in df_heat.values]
 
-        fig = go.Figure(go.Heatmap(
-            z=df_edge.values,
-            x=df_edge.columns.tolist(),
-            y=df_edge.index.tolist(),
-            colorscale="YlGnBu",
-            zmin=0, zmax=1,
-            text=np.round(df_edge.values, 2),
-            texttemplate="%{text:.0%}",
-        ))
-        fig.update_layout(**chart_style(
-            title="Edge-Case Coverage by Function",
-            height=420,
-            yaxis=dict(gridcolor="#f1f5f9", dtick=1),
-            xaxis=dict(gridcolor="#f1f5f9", tickangle=45),
-        ))
-        st.plotly_chart(fig, width='stretch')
+    fig = go.Figure(go.Heatmap(
+        z=df_heat.values,
+        x=df_heat.columns.tolist(),
+        y=df_heat.index.tolist(),
+        # Green=Pass, Purple=Repair, Red=Fail
+        colorscale=[[0, "#fca5a5"], [0.5, "#c4b5fd"], [1, "#6ee7b7"]],
+        text=label_matrix,          # always show text
+        texttemplate="%{text}",
+        textfont=dict(size=cell_font, color="#1e293b"),
+        zmin=0, zmax=2,
+        showscale=True,
+        colorbar=dict(
+            tickvals=[0.33, 1.0, 1.67],
+            ticktext=["❌ Fail", "🔧 Repair", "✅ Pass"],
+            title=dict(text="Outcome", side="top"),
+            thickness=16, len=0.5, x=1.01,
+        ),
+    ))
+    fig.update_layout(**chart_style(
+        title=f"Function × Strategy Outcome  ({num_funcs} functions × {len(df_heat.columns)} strategies)",
+        height=heatmap_height,
+        yaxis=dict(automargin=True, tickfont=dict(size=y_font_size), gridcolor="#f1f5f9"),
+        xaxis=dict(tickfont=dict(size=12), side="top", gridcolor="#f1f5f9"),
+        margin=dict(l=200, r=100, t=90, b=20),
+    ))
+    st.plotly_chart(fig, width='stretch')
+
+    # Color legend row below the heatmap for quick reference
+    leg1, leg2, leg3, _ = st.columns([1, 1, 1, 4])
+    with leg1:
+        st.markdown("<div style='background:#6ee7b7;border-radius:6px;padding:6px 12px;text-align:center;font-weight:700;color:#065f46;font-size:0.85rem'>✅ Pass</div>", unsafe_allow_html=True)
+    with leg2:
+        st.markdown("<div style='background:#c4b5fd;border-radius:6px;padding:6px 12px;text-align:center;font-weight:700;color:#4c1d95;font-size:0.85rem'>🔧 Repair</div>", unsafe_allow_html=True)
+    with leg3:
+        st.markdown("<div style='background:#fca5a5;border-radius:6px;padding:6px 12px;text-align:center;font-weight:700;color:#7f1d1d;font-size:0.85rem'>❌ Fail</div>", unsafe_allow_html=True)
+
+st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+
+# --- Heatmap 2: Edge-case coverage per function (full width) ---
+if edge_items:
+    edge_heat = {}
+    for item in edge_items:
+        fn = item.get("function_name", "?")
+        for cat, hit in item.get("covered", {}).items():
+            edge_heat.setdefault(fn, {})[cat] = edge_heat.get(fn, {}).get(cat, 0) + (1 if hit else 0)
+
+    df_edge = pd.DataFrame(edge_heat).T.fillna(0)
+    # Normalize: 0-1 scale per strategy count
+    df_edge = df_edge / max(len(all_strategies), 1)
+
+    num_cats = len(df_edge.columns)
+    edge_height = max(420, 80 + len(df_edge) * 22)
+    show_edge_text = len(df_edge) <= 20 and num_cats <= 12
+
+    fig = go.Figure(go.Heatmap(
+        z=df_edge.values,
+        x=df_edge.columns.tolist(),
+        y=df_edge.index.tolist(),
+        colorscale="YlGnBu",
+        zmin=0, zmax=1,
+        text=np.round(df_edge.values, 2) if show_edge_text else None,
+        texttemplate="%{text:.0%}" if show_edge_text else "",
+        textfont=dict(size=9),
+        colorbar=dict(title="Coverage", thickness=12, len=0.6),
+    ))
+    fig.update_layout(**chart_style(
+        title=f"Edge-Case Coverage by Function ({len(df_edge)} functions × {num_cats} categories)",
+        height=edge_height,
+        yaxis=dict(gridcolor="#f1f5f9", automargin=True, tickfont=dict(size=y_font_size)),
+        xaxis=dict(gridcolor="#f1f5f9", tickangle=35, tickfont=dict(size=11), automargin=True),
+        margin=dict(l=180, r=40, t=80, b=80),
+    ))
+    st.plotly_chart(fig, width='stretch')
 
 
 # --- Code viewer ---
 
 st.markdown('<div class="section-title">🔍 Code Viewer</div>', unsafe_allow_html=True)
 
-# Build a quick lookup so we can show original generated code
+# Build a lookup: (function_name, strategy) -> generated code
 gen_lookup = {}
 if gen_data:
     for g in gen_data:
         key = (g.get("method_name", ""), g.get("prompt_strategy", ""))
         gen_lookup[key] = g.get("generated_test", "")
 
-# Show each test as an expandable section
-for r in filtered[:20]:
-    fn = r.get("function_name", "?")
-    strat = r.get("prompt_strategy", "?")
-    status = "✅ Passed" if r.get("passed") else "❌ Failed"
-    tag = " (repaired)" if r.get("repair_success") else ""
+# Controls: search box + show-only-failures toggle
+cv_col1, cv_col2 = st.columns([3, 1])
+with cv_col1:
+    search_fn = st.text_input("🔎 Filter by function name", placeholder="e.g. compute", label_visibility="collapsed")
+with cv_col2:
+    show_failed_only = st.toggle("Failures only", False)
 
-    with st.expander(f"{status}{tag}  ·  {fn}  ·  {strat}", expanded=False):
-        left, right = st.columns(2)
+# Filter the list to show
+viewer_results = [
+    r for r in filtered
+    if (not search_fn or search_fn.lower() in r.get("function_name", "").lower())
+    and (not show_failed_only or not r.get("passed"))
+][:30]  # cap at 30 to keep page fast
 
-        with left:
-            st.caption("📝 Generated Test")
-            original = gen_lookup.get((fn, strat), "No code available")
-            st.code(original[:2000] if original else "N/A", language="python")
+if not viewer_results:
+    st.info("No tests match the current filter.")
+else:
+    # Group by function name so each function gets one expander with strategy tabs
+    from itertools import groupby
+    viewer_by_fn = defaultdict(list)
+    for r in viewer_results:
+        viewer_by_fn[r.get("function_name", "?")].append(r)
 
-        with right:
-            if r.get("repair_success") and r.get("repaired_test_code"):
-                st.caption("🔧 Repaired Test")
-                st.code(r["repaired_test_code"][:2000], language="python")
-            else:
-                st.caption("📋 Pytest Output")
-                st.code(r.get("pytest_output_tail", "No output")[:2000], language="text")
+    for fn, fn_results in viewer_by_fn.items():
+        # Pick a status summary for the expander label
+        n_pass = sum(1 for r in fn_results if r.get("passed"))
+        n_total = len(fn_results)
+        status_icon = "✅" if n_pass == n_total else ("⚠️" if n_pass > 0 else "❌")
+        label = f"{status_icon} {fn}  —  {n_pass}/{n_total} passed"
+
+        with st.expander(label, expanded=False):
+            tab_names = [r.get("prompt_strategy", "?") for r in fn_results]
+            tabs = st.tabs(tab_names)
+
+            for tab, r in zip(tabs, fn_results):
+                with tab:
+                    passed_badge = "<span style='color:#10b981;font-weight:700'>✅ PASSED</span>" if r.get("passed") else "<span style='color:#ef4444;font-weight:700'>❌ FAILED</span>"
+                    repair_note = " <span style='color:#8b5cf6'>(repaired by LLM)</span>" if r.get("repair_success") else ""
+                    st.markdown(f"**Status:** {passed_badge}{repair_note} &nbsp;|&nbsp; **Duration:** {r.get('duration_sec',0):.2f}s &nbsp;|&nbsp; **Error:** {r.get('error_category','—')}", unsafe_allow_html=True)
+
+                    left, right = st.columns(2)
+                    with left:
+                        st.caption("📝 Generated Test")
+                        original = gen_lookup.get((fn, r.get("prompt_strategy","")), "")
+                        st.code(original[:2000] or "No code stored", language="python")
+                    with right:
+                        if r.get("repair_success") and r.get("repaired_test_code"):
+                            st.caption("🔧 Repaired Test")
+                            st.code(r["repaired_test_code"][:2000], language="python")
+                        else:
+                            st.caption("📋 Pytest Output")
+                            st.code(r.get("pytest_output_tail", "No output")[:1500], language="text")
 
 
 # --- Detailed results table ---
 
 st.markdown('<div class="section-title">📋 Detailed Results</div>', unsafe_allow_html=True)
 
-rows = []
-for r in filtered:
-    rows.append({
-        "Function": r.get("function_name", "?"),
-        "Strategy": r.get("prompt_strategy", "?"),
-        "Status": "✅" if r.get("passed") else "❌",
-        "Error": r.get("error_category", "—"),
-        "Duration": f"{r.get('duration_sec', 0):.2f}s",
-        "Repaired": "✅" if r.get("repair_success") else ("🔄" if r.get("repair_attempted") else "—"),
-    })
+# Summary counts above table
+tab_all, tab_pass, tab_fail = st.tabs([f"All ({len(filtered)})", f"✅ Passed ({sum(1 for r in filtered if r.get('passed'))})", f"❌ Failed ({sum(1 for r in filtered if not r.get('passed'))})"])
 
-if rows:
-    df_table = pd.DataFrame(rows)
-    st.dataframe(df_table, width='stretch', hide_index=True, height=400)
+def build_table(subset):
+    rows = []
+    for r in subset:
+        rows.append({
+            "Function": r.get("function_name", "?"),
+            "Strategy": r.get("prompt_strategy", "?").replace("_", " "),
+            "Status": "✅ Pass" if r.get("passed") else "❌ Fail",
+            "Error Category": r.get("error_category", "—"),
+            "Duration (s)": round(r.get("duration_sec", 0), 3),
+            "Repaired": "Yes ✅" if r.get("repair_success") else ("Attempted" if r.get("repair_attempted") else "No"),
+        })
+    return pd.DataFrame(rows)
 
-    # Let user download filtered results as CSV
-    csv = df_table.to_csv(index=False)
+with tab_all:
+    df_all = build_table(filtered)
+    st.dataframe(df_all, width='stretch', hide_index=True, height=380)
+    csv = df_all.to_csv(index=False)
     st.download_button("📥 Export CSV", csv, "llm_test_results.csv", "text/csv", use_container_width=True)
+
+with tab_pass:
+    df_p = build_table([r for r in filtered if r.get("passed")])
+    st.dataframe(df_p, width='stretch', hide_index=True, height=380)
+
+with tab_fail:
+    df_f = build_table([r for r in filtered if not r.get("passed")])
+    st.dataframe(df_f, width='stretch', hide_index=True, height=380)
 
 
 # --- Footer ---
