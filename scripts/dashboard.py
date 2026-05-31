@@ -349,7 +349,12 @@ with col_right:
             for cat, hit in item.get("covered", {}).items():
                 strat_coverage[s][cat].append(1 if hit else 0)
 
-        colors = {"baseline_name_only": "#f59e0b", "advanced_with_code": "#10b981", "strict_import_focal_module": "#6366f1"}
+        colors = {
+            "baseline_name_only": "#f59e0b",
+            "advanced_with_code": "#10b981",
+            "strict_import_focal_module": "#6366f1",
+            "chain_of_thought": "#8b5cf6"
+        }
 
         fig = go.Figure()
         for s in sorted(strat_coverage.keys()):
@@ -458,7 +463,7 @@ with col_right:
         df_dur = pd.DataFrame(dur_rows)
         fig = px.box(
             df_dur, x="Strategy", y="Duration (s)", color="Strategy",
-            color_discrete_sequence=["#f59e0b", "#10b981", "#6366f1"],
+            color_discrete_sequence=["#f59e0b", "#10b981", "#6366f1", "#8b5cf6"],
         )
         fig.update_layout(**chart_style(title="Execution Duration by Strategy", height=300, showlegend=False))
         st.plotly_chart(fig, width='stretch')

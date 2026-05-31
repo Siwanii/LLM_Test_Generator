@@ -1,22 +1,38 @@
 import json
 import random
+from pathlib import Path
+from typing import Any, Dict, List
 
-INPUT_FILE = "results/extracted_methods.json"
-OUTPUT_FILE = "results/sampled_methods.json"
 
-SAMPLE_SIZE = 34  # 34 methods × 3 strategies = 102 tests
+INPUT_FILE = Path("results/extracted_methods.json")
+OUTPUT_FILE = Path("results/sampled_methods.json")
 
-print("Loading extracted methods...")
+SAMPLE_SIZE = 34  # 34 methods × 4 strategies = 136 tests (was 102 with 3 strategies)
+RANDOM_SEED = 42  # Fixed seed for reproducibility
 
-with open(INPUT_FILE, "r") as f:
-    methods = json.load(f)
 
-print("Total methods available:", len(methods))
+def sample_methods(
+    input_path: Path = INPUT_FILE,
+    output_path: Path = OUTPUT_FILE,
+    sample_size: int = SAMPLE_SIZE,
+    seed: int = RANDOM_SEED,
+) -> List[Dict[str, Any]]:
+    """Randomly sample methods from the extracted methods pool."""
+    print("Loading extracted methods...")
 
-sampled_methods = random.sample(methods, SAMPLE_SIZE)
+    methods: List[Dict[str, Any]] = json.loads(input_path.read_text(encoding="utf-8"))
+    print("Total methods available:", len(methods))
 
-with open(OUTPUT_FILE, "w") as f:
-    json.dump(sampled_methods, f, indent=2)
+    random.seed(seed)
+    sampled = random.sample(methods, min(sample_size, len(methods)))
 
-print("Sampled", SAMPLE_SIZE, "methods")
-print("Saved to:", OUTPUT_FILE)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(sampled, indent=2), encoding="utf-8")
+
+    print(f"Sampled {len(sampled)} methods (seed={seed})")
+    print("Saved to:", output_path)
+    return sampled
+
+
+if __name__ == "__main__":
+    sample_methods()

@@ -48,8 +48,12 @@ def _get_test_code(item: Dict[str, Any], prefer_repaired: bool = True) -> Tuple[
     repaired = item.get("repaired_test_code") or ""
     if prefer_repaired and isinstance(repaired, str) and repaired.strip():
         return repaired, "repaired"
-    # fallback: we may not have the original in execution_summary; return repaired anyway
-    return repaired, "repaired"
+    # fallback: try to get original test code from generated_test field
+    original = item.get("generated_test") or item.get("test_code") or ""
+    if isinstance(original, str) and original.strip():
+        return original, "original"
+    # last resort: return whatever repaired text we have (may be empty)
+    return repaired, "original"
 
 
 def _strip_markdown_fences(code: str) -> str:

@@ -2,3 +2,8 @@
 .DS_Store
 .Rhistory
 results/extracted_methods.json
+.cache_method_index.pkl
+__pycache__/
+*.pyc
+.venv/
+venv/

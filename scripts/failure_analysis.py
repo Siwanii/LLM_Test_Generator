@@ -45,7 +45,7 @@ for item in data:
     try:
         compile(cleaned_code, "<string>", "exec")
         valid += 1
-    except:
+    except Exception:
         syntax_errors += 1
 
 # PRINT RESULTS

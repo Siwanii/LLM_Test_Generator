@@ -1,206 +1,206 @@
 [
   {
-    "source_file": "ebcli/core/fileoperations.py",
-    "method_name": "get_ssh_folder",
-    "start_line": 56,
-    "end_line": 62
+    "source_file": "mode/worker.py",
+    "method_name": "_stop_on_signal",
+    "start_line": 263,
+    "end_line": 266
   },
   {
-    "source_file": "braindecode/braindecode/venv1/Lib/site-packages/pandas/core/sparse/frame.py",
-    "method_name": "cumsum",
-    "start_line": 804,
-    "end_line": 822
+    "source_file": "venv/Lib/site-packages/matplotlib/offsetbox.py",
+    "method_name": "_get_packed_offsets",
+    "start_line": 52,
+    "end_line": 134
   },
   {
-    "source_file": "pyreds/reds.py",
-    "method_name": "_metaphone_keys",
-    "start_line": 126,
-    "end_line": 127
+    "source_file": "intake_esm/search.py",
+    "method_name": "search",
+    "start_line": 27,
+    "end_line": 108
   },
   {
-    "source_file": "venv/Lib/site-packages/sklearn/metrics/classification.py",
-    "method_name": "matthews_corrcoef",
-    "start_line": 464,
-    "end_line": 548
+    "source_file": "src/main/python/ttconv/scc/word.py",
+    "method_name": "_is_hex_word",
+    "start_line": 42,
+    "end_line": 50
   },
   {
-    "source_file": "problems/N1401_Circle_And_Rectangle_Overlapping.py",
-    "method_name": "checkOverlap",
-    "start_line": 2,
-    "end_line": 36
+    "source_file": "app/models.py",
+    "method_name": "make_unique_nickname",
+    "start_line": 51,
+    "end_line": 60
   },
   {
-    "source_file": "venv/Lib/site-packages/pandas/core/sorting.py",
-    "method_name": "is_int64_overflow_possible",
-    "start_line": 127,
-    "end_line": 132
+    "source_file": "venv/Lib/site-packages/sklearn/decomposition/pca.py",
+    "method_name": "_infer_dimension_",
+    "start_line": 94,
+    "end_line": 103
   },
   {
-    "source_file": "quara/protocol/qtomography/standard/standard_qpt.py",
-    "method_name": "generate_empi_dist",
-    "start_line": 120,
-    "end_line": 156
+    "source_file": "venv/Lib/site-packages/pandas/util/testing.py",
+    "method_name": "assert_series_equal",
+    "start_line": 1223,
+    "end_line": 1345
   },
   {
-    "source_file": "nineties/parser.py",
-    "method_name": "parse_timestamp",
-    "start_line": 25,
-    "end_line": 47
+    "source_file": "graphql_ws/testing.py",
+    "method_name": "close",
+    "start_line": 37,
+    "end_line": 38
   },
   {
-    "source_file": "src/spectrum/calculations/numeric.py",
-    "method_name": "filter_divisors",
-    "start_line": 69,
+    "source_file": "Module_2/ICP_5/Code/Source code/ICP-5GraphX/venv/Lib/site-packages/numpy/lib/function_base.py",
+    "method_name": "percentile",
+    "start_line": 3565,
+    "end_line": 3707
+  },
+  {
+    "source_file": "bonfire/dateutils.py",
+    "method_name": "datetime_converter",
+    "start_line": 44,
+    "end_line": 50
+  },
+  {
+    "source_file": "Web/v1/simbongsa-clean-v/venv/Lib/site-packages/numpy/linalg/linalg.py",
+    "method_name": "matrix_rank",
+    "start_line": 1695,
+    "end_line": 1794
+  },
+  {
+    "source_file": "tools/etl/mapreduce.py",
+    "method_name": "to_list",
+    "start_line": 164,
+    "end_line": 170
+  },
+  {
+    "source_file": "venv/Lib/site-packages/numpy/lib/function_base.py",
+    "method_name": "hamming",
+    "start_line": 2861,
+    "end_line": 2957
+  },
+  {
+    "source_file": "airflow/providers/google/cloud/operators/s3_to_gcs.py",
+    "method_name": "execute",
+    "start_line": 139,
+    "end_line": 214
+  },
+  {
+    "source_file": "theano/tensor/nnet/abstract_conv.py",
+    "method_name": "conv2d_grad_wrt_inputs",
+    "start_line": 634,
+    "end_line": 766
+  },
+  {
+    "source_file": "acme/acme/jose/jws.py",
+    "method_name": "find_key",
+    "start_line": 101,
+    "end_line": 114
+  },
+  {
+    "source_file": "venv/Lib/site-packages/pandas/_config/localization.py",
+    "method_name": "can_set_locale",
+    "start_line": 47,
+    "end_line": 72
+  },
+  {
+    "source_file": "src/ssh_audit/software.py",
+    "method_name": "compare_version",
+    "start_line": 62,
+    "end_line": 100
+  },
+  {
+    "source_file": "gpx_parser/GPXTrackSegment.py",
+    "method_name": "split",
+    "start_line": 80,
+    "end_line": 83
+  },
+  {
+    "source_file": "venv/Lib/site-packages/pandas/_testing.py",
+    "method_name": "assert_frame_equal",
+    "start_line": 1504,
+    "end_line": 1717
+  },
+  {
+    "source_file": "PyTorch-NLP/torchnlp/text_encoders/subword_text_tokenizer.py",
+    "method_name": "encode",
+    "start_line": 59,
+    "end_line": 81
+  },
+  {
+    "source_file": "cloudnetpy/categorize/model.py",
+    "method_name": "interpolate_to_common_height",
+    "start_line": 44,
+    "end_line": 65
+  },
+  {
+    "source_file": "h/tasks/cleanup.py",
+    "method_name": "purge_expired_auth_tickets",
+    "start_line": 32,
+    "end_line": 35
+  },
+  {
+    "source_file": "lib/pandas/io/formats/style.py",
+    "method_name": "render",
+    "start_line": 392,
+    "end_line": 444
+  },
+  {
+    "source_file": "mollie/api/client.py",
+    "method_name": "set_user_agent_component",
+    "start_line": 148,
+    "end_line": 163
+  },
+  {
+    "source_file": "girder/models/collection.py",
+    "method_name": "setMetadata",
+    "start_line": 176,
+    "end_line": 209
+  },
+  {
+    "source_file": "concept/math/number.py",
+    "method_name": "pentagonal",
+    "start_line": 82,
     "end_line": 95
   },
   {
-    "source_file": "venv/Lib/site-packages/pandas/core/dtypes/common.py",
-    "method_name": "is_datetime64_any_dtype",
-    "start_line": 1163,
-    "end_line": 1200
+    "source_file": "pynws/raw_data.py",
+    "method_name": "raw_stations_observations",
+    "start_line": 16,
+    "end_line": 32
   },
   {
-    "source_file": "incubator-tvm/python/tvm/contrib/nnpack.py",
-    "method_name": "convolution_inference",
-    "start_line": 69,
-    "end_line": 119
+    "source_file": "venv/Lib/site-packages/numpy/ma/core.py",
+    "method_name": "max",
+    "start_line": 6709,
+    "end_line": 6718
   },
   {
-    "source_file": "citam/engine/map/ingester.py",
-    "method_name": "_find_all_overlapping_walls",
-    "start_line": 364,
-    "end_line": 397
+    "source_file": "venv/lib/python3.6/site-packages/pandas/core/sparse/frame.py",
+    "method_name": "count",
+    "start_line": 798,
+    "end_line": 802
   },
   {
-    "source_file": "venv/lib/python3.6/site-packages/numpy/ma/core.py",
-    "method_name": "dot",
-    "start_line": 7547,
-    "end_line": 7626
+    "source_file": "site_env/lib/python3.5/site-packages/pyramid/request.py",
+    "method_name": "is_response",
+    "start_line": 224,
+    "end_line": 233
   },
   {
-    "source_file": "venv/lib/python3.6/site-packages/Cryptodome/PublicKey/ECC.py",
-    "method_name": "has_private",
-    "start_line": 314,
-    "end_line": 317
+    "source_file": "p421/Solution.py",
+    "method_name": "findMaximumXOR",
+    "start_line": 8,
+    "end_line": 56
   },
   {
-    "source_file": "Integrator/__init__.py",
-    "method_name": "create_of_get_conf",
-    "start_line": 315,
-    "end_line": 340
+    "source_file": "anyblok/migration.py",
+    "method_name": "detect_changed",
+    "start_line": 1488,
+    "end_line": 1501
   },
   {
-    "source_file": "ledgers/utils.py",
-    "method_name": "make_decimal",
-    "start_line": 137,
-    "end_line": 143
-  },
-  {
-    "source_file": "cvra_packager/packager.py",
-    "method_name": "download_dependencies",
-    "start_line": 99,
-    "end_line": 124
-  },
-  {
-    "source_file": "venv/Lib/site-packages/scipy/sparse/linalg/_onenormest.py",
-    "method_name": "_onenormest_core",
-    "start_line": 325,
-    "end_line": 468
-  },
-  {
-    "source_file": "keras/backend/cntk_backend.py",
-    "method_name": "bias_add",
-    "start_line": 166,
-    "end_line": 216
-  },
-  {
-    "source_file": "src/venv/lib/python3.6/site-packages/scipy/special/orthogonal.py",
-    "method_name": "roots_sh_jacobi",
-    "start_line": 351,
-    "end_line": 404
-  },
-  {
-    "source_file": "biomajmanager/manager.py",
-    "method_name": "can_switch",
-    "start_line": 140,
-    "end_line": 168
-  },
-  {
-    "source_file": "abagen/probes_.py",
-    "method_name": "_average",
-    "start_line": 416,
-    "end_line": 445
-  },
-  {
-    "source_file": "venv2/Lib/site-packages/scipy/stats/stats.py",
-    "method_name": "brunnermunzel",
-    "start_line": 5959,
-    "end_line": 6089
-  },
-  {
-    "source_file": "lib/python3.6/site-packages/numpy/ma/core.py",
-    "method_name": "set_fill_value",
-    "start_line": 483,
-    "end_line": 545
-  },
-  {
-    "source_file": "privacyidea/lib/resolver.py",
-    "method_name": "get_resolver_object",
-    "start_line": 315,
-    "end_line": 342
-  },
-  {
-    "source_file": "venv/Lib/site-packages/pandas/core/window.py",
-    "method_name": "expanding",
-    "start_line": 2475,
-    "end_line": 2479
-  },
-  {
-    "source_file": "venv/lib/python3.7/site-packages/numpy/ma/core.py",
-    "method_name": "maximum_fill_value",
-    "start_line": 356,
-    "end_line": 404
-  },
-  {
-    "source_file": "env/lib/python3.4/site-packages/setuptools/package_index.py",
-    "method_name": "parse_bdist_wininst",
-    "start_line": 46,
-    "end_line": 67
-  },
-  {
-    "source_file": "FMRI/venv/Lib/site-packages/pandas/io/formats/style.py",
-    "method_name": "clear",
-    "start_line": 487,
-    "end_line": 492
-  },
-  {
-    "source_file": "CTCI/Chapter8/03-magic-index.py",
-    "method_name": "magic_index",
-    "start_line": 23,
-    "end_line": 28
-  },
-  {
-    "source_file": "test_sharder_4.py",
-    "method_name": "_check_cleave_root",
-    "start_line": 846,
-    "end_line": 1204
-  },
-  {
-    "source_file": "venv/lib/python3.7/site-packages/matplotlib/colors.py",
-    "method_name": "_resample",
-    "start_line": 590,
-    "end_line": 594
-  },
-  {
-    "source_file": "HiCH_StorageNode/swift/obj/auditor.py",
-    "method_name": "object_audit",
-    "start_line": 179,
-    "end_line": 216
-  },
-  {
-    "source_file": "wcs/services/client.py",
-    "method_name": "copy",
-    "start_line": 131,
-    "end_line": 136
+    "source_file": "gitopscli/io_api/yaml_util.py",
+    "method_name": "yaml_file_load",
+    "start_line": 17,
+    "end_line": 22
   }
 ]

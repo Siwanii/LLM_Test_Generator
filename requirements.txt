@@ -1,0 +1,8 @@
+# Core dependencies
+ollama
+streamlit
+plotly
+pytest
+
+# Standard library dependencies (included for documentation)
+# json, os, re, ast, math, pathlib, dataclasses, typing — all stdlib

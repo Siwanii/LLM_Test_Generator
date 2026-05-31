@@ -1,7 +1,7 @@
 import json
 import ollama
 
-from scripts.prompt_strategies import load_strategies  # NEW
+from prompt_strategies import load_strategies  # matches advanced version
 
 INPUT_FILE = "results/sampled_methods_with_code.json"
 OUTPUT_FILE = "results/generated_tests_by_strategy.json"  # CHANGED

@@ -5,19 +5,25 @@
       "id": "baseline_name_only",
       "name": "Baseline (name-only prompt)",
       "temperature": 0.2,
-      "prompt_template": "You are a professional Python developer.\nWrite pytest unit tests for the function '{function_name}'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n"
+      "prompt_template": "You are a professional Python developer.\nWrite pytest unit tests for the function '{function_name}'.\nRequirements:\n- follow pytest format\n- include multiple assertions\n- include edge cases\n- include boundary cases\n- import pytest at the top\n\nIMPORTANT RULES:\n- Output ONLY valid Python code\n- No Markdown fences\n- Do NOT use pytest.raises(TypeError) unless you are certain the function validates input types\n- If you don't know the return value, test that the function runs without error: result = function_name(...)\n- When using pytest.mark.parametrize, ensure the number of values in each tuple matches the number of parameter names exactly\n"
     },
     {
       "id": "advanced_with_code",
       "name": "Advanced (includes method code + edge cases)",
       "temperature": 0.2,
-      "prompt_template": "You are a professional Python developer.\n\nHere is the function:\n{method_code}\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, invalid inputs, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n\nSTRICT:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n"
+      "prompt_template": "You are a professional Python developer.\n\nHere is the function:\n{method_code}\n\nGenerate pytest unit tests.\nRequirements:\n- normal cases\n- edge cases: zero, negative, empty inputs, None, boundary, large inputs\n- Use pytest.mark.parametrize where possible\n- multiple test functions\n- import pytest at the top\n\nIMPORTANT RULES:\n- Output ONLY valid Python code\n- No Markdown fences\n- No explanation outside code (comments allowed)\n- Do NOT assume the function raises TypeError or ValueError unless the code explicitly shows input validation\n- If the function body is 'pass' or 'return None', test that calling it returns None\n- When using @pytest.mark.parametrize(\"a, b, expected\", [...]), every tuple MUST have exactly 3 values. Example:\n  @pytest.mark.parametrize(\"x, expected\", [(0, 0), (1, 1), (-1, -1)])\n  def test_func(x, expected):\n      assert func(x) == expected\n"
     },
     {
       "id": "strict_import_focal_module",
       "name": "Strict import + no markdown",
       "temperature": 0.1,
-      "prompt_template": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import {function_name}\n\nFUNCTION NAME: {function_name}\n\nFUNCTION CODE:\n{method_code}\n"
+      "prompt_template": "Output a single valid Python file containing pytest tests.\nDo NOT output Markdown.\nDo NOT output explanations.\nThe tests must import:\nfrom focal_module import {function_name}\nimport pytest\n\nFUNCTION NAME: {function_name}\n\nFUNCTION CODE:\n{method_code}\n\nIMPORTANT RULES:\n- Test behavior, not specific return values you are guessing\n- If the function body is 'pass' or returns None, assert the result is None\n- Do NOT use pytest.raises(TypeError) unless the code explicitly raises it\n- Every test must call the function and check the result\n"
+    },
+    {
+      "id": "chain_of_thought",
+      "name": "Chain-of-thought (reason then test)",
+      "temperature": 0.15,
+      "prompt_template": "You are a senior Python test engineer.\n\nFUNCTION NAME: {function_name}\n\nFUNCTION CODE:\n{method_code}\n\nFollow these steps IN ORDER:\n\nStep 1: In a Python comment block, briefly analyze what {function_name} does based on the code.\nStep 2: In a Python comment block, list 5 edge cases you should test.\nStep 3: Write the actual pytest test code.\n\nRules for the test code:\n- Start with: import pytest\n- Start with: from focal_module import {function_name}\n- Write at least 4 test functions\n- Test what the function ACTUALLY does based on the code, not what you think it should do\n- If the function body is 'pass' or 'return None', test that it returns None for various inputs\n- Do NOT use pytest.raises(TypeError) unless the code explicitly validates types\n- Do NOT use Markdown fences\n- Output ONLY Python code (comments are fine)\n"
     }
   ]
 }

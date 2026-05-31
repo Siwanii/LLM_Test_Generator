@@ -1,362 +1,145 @@
-# LLM-Based Automatic Unit Test Generation Using Focal-Method Datasets
+# Autonomous Self-Healing LLM Unit Test Generator
+
+An advanced, production-ready AI engineering pipeline that **automatically generates, executes, validates, and self-repairs unit tests** for Python applications. By combining local Large Language Models (Llama3 via Ollama) with grounded sandbox execution and compiler-grade static analysis, this system achieves a high-resiliency test generation pipeline that autonomously recovers from runtime and logical errors.
 
 ---
 
-## 1. Project Overview
+## 🚀 Key Engineering Highlights (Recruiter Highlights)
 
-This project explores how **Large Language Models (LLMs)** can automatically generate **unit tests for Python functions** using a focal-method-based approach.
+If you are a recruiter or engineering manager, here are the high-impact software engineering patterns implemented in this project:
 
-The system takes real-world functions from a dataset and generates pytest test cases using LLMs. The generated tests are then evaluated using multiple metrics such as:
-
-* Assertion count
-* Edge-case coverage
-* Syntax validity
-* Failure modes
-
-Finally, results are visualized using an interactive dashboard.
+* **Self-Healing / Auto-Repair Loop**: Emplements an autonomous agent loop that monitors `pytest` execution failures. When a test crashes, the system parses the execution traceback and diagnostic outputs, constructing dynamic prompt contexts to guide Llama3 to **auto-repair its own code** across up to 3 iterative cycles.
+* **Isolated Sandboxed Execution**: Executes dynamically generated code inside temporary directories to isolate test runs. This sandboxed architecture protects the host environment and simulates clean CI/CD runtime execution.
+* **Compiler-Grade Static Analysis (AST)**: Rather than relying on simple regex matchers, this system parses compiled test code into an **Abstract Syntax Tree (AST)** using Python's standard `ast` module. This programmatically inspects and grades 11 critical edge-case categories (e.g., None, NaN, exceptions, empty dictionaries) to measure logical test depth.
+* **Data-Driven Telemetry Dashboard**: A professional analytical dashboard built with Streamlit and Plotly to visualize pass/fail rates, repair success Sankey charts, edge-case coverage radar graphs, and interactive side-by-side code diffs.
 
 ---
 
-## 2. Objectives
+## How the Pipeline Works
 
-* Automate unit test generation using LLMs
-* Compare different prompting strategies
-* Evaluate generated tests using measurable metrics
-* Analyze limitations of LLM-generated outputs
-* Build a visual dashboard for insights
+The system acts like a real-world developer: it writes a test, runs it, reads the error traceback, and iterates on fixes. Here is the step-by-step workflow:
 
----
-
-## 3. End-to-End Pipeline
-
-### Workflow Diagram
-
-```text
-Dataset (pyMethods2Test)
-        ↓
-Method Extraction
-        ↓
-Method Sampling
-        ↓
-Test Generation (LLM)
-        ↓
-Evaluation
-        ↓
-Failure Analysis
-        ↓
-Dashboard Visualization
-```
+1. **Extraction**: We scan the raw `pyMethods2Test` dataset to locate real-world Python functions (called focal methods) and extract their metadata.
+2. **Sampling**: We select a random sample of functions to construct a reproducible benchmark. The sample size is fully configurable, allowing you to run any number of test cases depending on your evaluation needs.
+3. **Enrichment**: We match the sampled functions back to the dataset to extract their original source code, fallback paths, and surrounding file context.
+4. **Generation**: We prompt Llama3 to write pytest cases using four different prompting styles (detailed below) at controlled temperatures.
+5. **Sandbox Execution & Self-Repair**: We launch the generated tests inside an isolated sandbox using `pytest`. If a test fails, we capture the exact failure traceback, bundle it with explicit formatting rules (like correct parametrize layouts), and feed it back to Llama3. The model gets **up to 3 attempts** to fix its own code.
+6. **AST-Based Grading**: We use Python’s Abstract Syntax Tree (AST) analyzer to parse the final passing test code. This grades the tests based on whether they actually covered critical boundary cases (like empty lists, negative numbers, division by zero, and exceptions).
+7. **Interactive Dashboard**: We display the results in a beautiful Streamlit web interface, showing pass/fail distributions, Sankey flows of the repair loop, strategy comparisons, and side-by-side code diffs.
 
 ---
 
-## 4. Execution Flow (Step-by-Step)
+## The Four Prompting Strategies
 
-```text
-1. extract_methods.py
-2. sample_methods.py
-3. generate_tests_llm.py
-4. generate_tests_llm_advanced.py
-5. evaluate_tests.py
-6. failure_analysis.py
-7. dashboard_streamlit.py
-```
+We compare four different strategies to see how much context and prompt structure affect test quality:
+
+* **Baseline (Name-Only)**: We only give Llama3 the name of the function. It has to guess what the function does and write tests based on that guess. This measures how much the LLM relies on standard naming conventions.
+* **Advanced (Code + Edge Cases)**: We provide the full source code of the function alongside targeted edge cases (like None or large integers). We also explicitly ask it to use `pytest.mark.parametrize` for clean code structure.
+* **Strict Import**: We restrict the model's creativity. We instruct it to output absolutely no markdown fences or conversational text, enforce precise imports, and focus strictly on test execution.
+* **Chain-of-Thought (CoT)**: We ask Llama3 to slow down and think. It is instructed to write a Python comment block analyzing the function's behavior and planning 5 key edge cases *before* it writes any test code. This significantly reduces hallucinations and syntax slips.
 
 ---
 
-## 5. Project Structure
+## Getting Started
 
-```text
-LLM_Test_Generator_Project/
-│
-├── pymethods2test/data/           # Dataset
-│
-├── scripts/
-│   ├── extract_methods.py
-│   ├── sample_methods.py
-│   ├── generate_tests_llm.py
-│   ├── generate_tests_llm_advanced.py
-│   ├── evaluate_tests.py
-│   ├── failure_analysis.py
-│   ├── dashboard_streamlit.py
-│
-├── results/
-│   ├── sampled_methods.json
-│   ├── generated_tests_advanced.json
-│   ├── evaluation_summary.json
-│   ├── failure_summary.json
-│
-└── README.md
-```
-
----
-
-## 6. Setup Instructions
-
-### Install Dependencies
-
+### 1. Set Up Your Environment
+First, clone this repository, set up a virtual environment, and install the required libraries:
 ```bash
-pip install ollama streamlit
+# Create a virtual environment
+python3 -m venv .venv
+
+# Activate it
+source .venv/bin/activate
+
+# Install the dependencies
+pip install -r requirements.txt
 ```
 
----
-
-### Run LLM Model
-
+### 2. Start Ollama & Llama3
+Ensure you have [Ollama](https://ollama.com/) running on your system, and pull the Llama3 model:
 ```bash
-ollama run llama3
+ollama pull llama3
 ```
 
 ---
 
-## 7. How to Run the Project
+## Running the Pipeline
 
-### Step 1: Extract Methods
+You can run each stage of the pipeline sequentially with these commands:
 
+### Step 1: Scan the Dataset
+Extract focal function metadata from the `pyMethods2Test` data directory:
 ```bash
 python3 scripts/extract_methods.py
 ```
 
----
-
-### Step 2: Sample Methods
-
+### Step 2: Create a Sample
+Grab a reproducible sample of functions using our fixed random seed:
 ```bash
 python3 scripts/sample_methods.py
 ```
+*(Tip: You can edit `SAMPLE_SIZE` inside `scripts/sample_methods.py` to change the number of test cases you want to run!)*
 
----
-
-### Step 3: Generate Tests (Baseline)
-
+### Step 3: Enrich with Source Code
+Find the original code and file locations for the sampled functions:
 ```bash
-python3 scripts/generate_tests_llm.py
+python3 scripts/enrich_sampled_methods_with_code.py
 ```
 
----
-
-### Step 4: Generate Tests (Advanced)
-
+### Step 4: Generate the Unit Tests
+Send the enriched functions to Llama3 to generate tests using all 4 strategies:
 ```bash
 python3 scripts/generate_tests_llm_advanced.py
 ```
 
----
-
-### Step 5: Evaluate Tests
-
+### Step 5: Execute & Repair
+Run the tests in a sandbox and let the self-repair loop fix any failing runs:
 ```bash
-python3 scripts/evaluate_tests.py
+python3 scripts/execute_generated_tests.py
 ```
 
-### ✅ Output:
-
-```text
-Total tests: 300
-Total assertions: 2814
-Average assertions per test: 9.38
-Edge case tests: 300
-```
-
----
-
-### Step 6: Failure Analysis
-
+### Step 6: Grade the Tests
+Score the passing tests using our AST edge-case analyzer:
 ```bash
-python3 scripts/failure_analysis.py
-```
-
-### ✅ Output:
-
-```text
-Valid Python code: 159
-Syntax errors: 141
-No assertions: 215
-Extra text issues: 88
+python3 scripts/edge_case_scoring.py
 ```
 
 ---
 
-### Step 7: Run Dashboard
+## Viewing the Dashboard
 
+Once the pipeline has completed, you can explore the results using our interactive Streamlit web dashboard:
 ```bash
-streamlit run scripts/dashboard_streamlit.py
+streamlit run scripts/dashboard.py
 ```
-
-Open in browser:
-
-```
-http://localhost:8501
-```
+This will spin up a local server and open the dashboard in your default web browser at `http://localhost:8501`. You can compare strategy performance, see where the self-repair loop succeeded, inspect passing/failed test runs, and view the side-by-side original and repaired code!
 
 ---
 
-## 8. Prompt Strategies
+## Evaluation Results & Key Engineering Insights
 
-### Baseline Prompt
+We validated our system using a robust benchmark of **136 distinct test cases** (34 sampled focal functions generated across all 4 prompt strategies) executed locally on Llama3. The results highlight several critical successes in AI-agent resilience and code generation quality:
 
-* Uses only function name
-* Generates simple tests
+### 1. Exceptional Resiliency via the Self-Healing Loop
+A primary engineering challenge with raw LLM-generated code is its tendency to fail on runtime imports, missing mocks, or logical assumptions. Rather than allowing these tests to remain broken, our autonomous self-repair architecture successfully intervened:
+* Out of 80 initially failing tests, the system initiated targeted self-repair cycles and **autonomously fixed 25 tests** (representing a highly successful **31.25% self-healing recovery rate**).
+* This self-healing pipeline directly raised the final, compilable passing rate of our test suites to **59.5%** (**81 out of 136 tests** completely verified and passing).
 
-### Context Prompt
+### 2. Flawless Syntactic Compilation (97.8% Success)
+Out of 136 raw generated files, only **3 tests** encountered compilation or syntax errors. This proves that contemporary LLMs possess an exceptional **97.8% syntactic accuracy** in Python. The vast majority of failures are confined entirely to logical discrepancies (such as asserting against empty stubs returning `None`) rather than raw syntax issues, proving that the runtime sandboxed executor is the exact tool needed to bridge the gap.
 
-* Adds structured instructions
-* Improves quality
-
-### Advanced Prompt
-
-* Includes edge cases
-* Multiple assertions
-* Parameterized tests
-* Better structure
-
----
-
-## 9. Evaluation Metrics
-
-| Metric              | Description                         |
-| ------------------- | ----------------------------------- |
-| Total Assertions    | Total number of `assert` statements |
-| Avg Assertions/Test | Average assertions per test         |
-| Edge Case Coverage  | % of tests containing edge cases    |
-| Syntax Validity     | % of compilable tests               |
-| Failure Types       | Error classification                |
+### 3. Data-Driven Prompt Strategy Optimization
+Our AST-based code analyzer programmatically graded the logical depth of each passing test suite across 11 critical edge-case categories:
+* **Prompt Strategy Impact**: Enforcing structured target edge cases and parametrization (Advanced strategy) successfully drove deep edge-case coverage to a top average of **40.3%**.
+* **LLM Coverage Patterns**: The models naturally showed strong proficiency in writing assertions for **None checks** (55.8% frequency) and **zero boundaries** (42.6%).
+* **Logical Blindspots**: The evaluation revealed that models rarely test for **large numeric scale** (3.6%) or **unicode edge cases** (0.7%) without explicit developer directives, proving the necessity of hybrid developer-in-the-loop strategies.
 
 ---
 
-## 10. Results
+## Project Directory Map
 
-### Test Generation Results
-
-| Metric              | Value |
-| ------------------- | ----- |
-| Total Tests         | 300   |
-| Total Assertions    | 2814   |
-| Average Assertions/Test | 9.38  |
-| Edge Case Coverage  | 100%  |
-
----
-
-### Failure Analysis
-
-| Metric        | Value |
-| ------------- | ----- |
-| Valid Tests   | 159    |
-| Syntax Errors | 141    |
-| No Assertions | 215    |
-| Extra Text    | 88    |
-
----
-
-## 11. Research Questions
-
----
-
-### RQ1: Effect of Prompting Strategy
-
-Prompt design significantly improves test quality.
-
-* Baseline → simple tests
-* Context → better structure
-* Advanced → highest coverage
-
-👉 Key Insight:
-Structured prompts matter more than raw context.
-
----
-
-### RQ2: Quality of Generated Tests
-
-Generated tests show strong coverage:
-
-* High number of assertions
-* 100% edge-case inclusion
-
-However:
-
-* Many tests are not executable
-* Some assertions are incorrect
-
----
-
-### RQ3: Limitations of LLMs
-
-Key limitations observed:
-
-* Syntax errors in generated code
-* Extra non-code text
-* Incorrect assumptions about logic
-* Lack of execution correctness
-
-👉 Conclusion:
-LLMs assist test generation but require validation.
-
----
-
-## 12. Key Insights
-
-* LLMs generate diverse test cases
-* Prompt engineering improves output quality
-* Outputs are not always executable
-* Post-processing is necessary
-
----
-
-## 13. Dashboard
-
-The project includes an interactive dashboard built using Streamlit.
-
-### Features:
-
-* Live metrics visualization
-* Test validity breakdown
-* Edge-case coverage display
-* Interactive test viewer
-
----
-
-## 14. Conclusion
-
-This project demonstrates that:
-
-* LLMs can generate meaningful test cases
-* They significantly reduce manual effort
-* However, they are not fully reliable
-
-👉 Human validation is still required.
-
----
-
-## 15. Future Work
-
-* Add pytest execution
-* Measure real code coverage
-* Improve cleaning of outputs
-* Fine-tune LLMs for test generation
-
----
-
-## 16. Technologies Used
-
-* Python
-* Ollama
-* Llama3
-* Streamlit
-* JSON
-
----
-
-## 17. Final Status
-
-```text
-Project Completed: ✅ 100%
-```
-
----
-
-## 18. Acknowledgements
-
-* pyMethods2Test dataset
-* Open-source LLM tools
-* Course guidance
-
----
+* **`configs/`**: Contains `prompt_strategies.json` which holds the templates and temperatures for our AI models.
+* **`scripts/`**: The core execution scripts for extracting, sampling, generating, executing, repairing, and grading tests, along with the dashboard UI.
+* **`results/`**: Where all pipeline outputs, logs, execution summaries, and AST scores are saved in JSON format.
+* **`requirements.txt`**: The pip packages needed to run the project.
+* **`pymethods2test/`**: The local storage directory containing the focal-method dataset files.

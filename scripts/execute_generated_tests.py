@@ -155,9 +155,14 @@ Pytest output / traceback:
 
 Requirements:
 - Output must be a valid pytest test module.
-- Must run under pytest without syntax errors.
+- Must run under pytest without syntax or collection errors.
+- Start with: import pytest
 - Import the focal function using: from focal_module import {function_name}
 - Do not include Markdown fences or any prose.
+- Do NOT use pytest.raises(TypeError) unless the function code explicitly raises TypeError.
+- If using @pytest.mark.parametrize("a, b", [...]), every tuple MUST have exactly 2 values.
+- If the function returns None or has 'pass' as body, assert the result is None.
+- Fix ALL errors shown in the traceback above.
 """
     resp = ollama.chat(
         model=model,
@@ -183,10 +188,16 @@ def _make_project(tmpdir: Path, function_name: str, method_code: str, test_code:
             encoding="utf-8",
         )
 
-    injected_import = f"from focal_module import {function_name}\n"
-    final_test = test_code
+    # Inject both pytest and focal_module imports if missing
+    injected_lines = []
+    if "import pytest" not in test_code:
+        injected_lines.append("import pytest")
     if f"from focal_module import {function_name}" not in test_code:
-        final_test = injected_import + "\n" + test_code
+        injected_lines.append(f"from focal_module import {function_name}")
+
+    final_test = test_code
+    if injected_lines:
+        final_test = "\n".join(injected_lines) + "\n\n" + test_code
 
     (tmpdir / "test_generated.py").write_text(final_test, encoding="utf-8")
 
@@ -216,9 +227,9 @@ def main(
     output_path: Path = DEFAULT_OUTPUT,
     limit: Optional[int] = None,
     timeout_sec: int = 60,
-    enable_repair: bool = True,          # NEW
-    max_repair_iters: int = 1,           # NEW (MVP: 1)
-    ollama_model: str = "llama3",        # NEW
+    enable_repair: bool = True,
+    max_repair_iters: int = 3,           # Increased from 1 for better fix rate
+    ollama_model: str = "llama3",
 ) -> None:
     input_path = Path(input_path)
     output_path = Path(output_path)
@@ -244,6 +255,9 @@ def main(
     durations: List[float] = []
     repair_iters_list: List[int] = []
 
+    print(f"\n🚀 Starting execution & repair of {n} generated tests...\n")
+    start_all = time.time()
+
     for i in range(n):
         entry = entries[i]
         function_name = _normalize_function_name(entry)
@@ -259,6 +273,9 @@ def main(
         repair_iters = 0
         repaired_test_code = ""
 
+        # Print current test progress
+        print(f"[{i+1:3d}/{n}] Focal: {function_name:<25} | Strategy: {strategy:<28} ... ", end="", flush=True)
+
         try:
             # 1) First run (original)
             _make_project(tmp_root, function_name, method_code, test_code)
@@ -273,11 +290,13 @@ def main(
             current_exit = exit_code
 
             if enable_repair and not passed and max_repair_iters > 0:
+                print(f"❌ Failed ({category}) -> entering repair loop...")
                 repair_attempted = True
                 totals["repair_attempted"] += 1
 
                 for it in range(1, max_repair_iters + 1):
                     repair_iters = it
+                    print(f"   ↳ [Iter {it}/{max_repair_iters}] Querying Llama3 for fix... ", end="", flush=True)
                     fixed = _repair_with_ollama(
                         function_name=function_name,
                         method_code=method_code,
@@ -286,6 +305,7 @@ def main(
                         model=ollama_model,
                     )
                     if not fixed.strip():
+                        print("Empty response, aborted.")
                         break
 
                     repaired_test_code = fixed
@@ -301,15 +321,21 @@ def main(
                         repair_success = True
                         passed = True
                         category = "passed_after_repair"
+                        print("✅ Success! Repaired.")
                         break
+                    else:
+                        cat_fail = _classify_pytest_output(current_exit, current_out)
+                        print(f"❌ Still failing ({cat_fail})")
 
                     # keep trying with latest failure context
                     current_test_code = repaired_test_code
 
                 repair_iters_list.append(repair_iters)
-
-
-
+            else:
+                if passed:
+                    print("✅ Passed!")
+                else:
+                    print(f"❌ Failed ({category})")
 
             res = ExecutionResult(
                 id=str(test_id),
@@ -342,6 +368,7 @@ def main(
             out2 = (e.stdout or "")
             out2 = out2 + f"\nTIMEOUT: exceeded {timeout_sec}s\n"
             category = "timeout"
+            print("⏳ TIMEOUT!")
             res = ExecutionResult(
                 id=str(test_id),
                 function_name=function_name,
@@ -368,6 +395,9 @@ def main(
 
     totals["avg_duration_sec"] = (sum(durations) / len(durations)) if durations else 0.0
     totals["avg_repair_iters"] = (sum(repair_iters_list) / len(repair_iters_list)) if repair_iters_list else 0.0
+
+    print(f"\n🎉 Completed execution of {totals['total']} tests in {time.time() - start_all:.1f}s")
+    print(f"📊 Summary: Passed {totals['passed']}/{totals['total']} | Repaired {totals['repair_success']}/{totals['repair_attempted']}\n")
 
     payload = {
         "input_file": str(input_path),

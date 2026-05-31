@@ -19,15 +19,23 @@ results = []
 def extract_code(raw_text):
     """Pull just the Python code out of LLM responses.
     The model often wraps code in ```python ... ``` fences and adds
-    explanatory prose. We want only the code block.
+    explanatory prose. We want only the code block(s).
     """
-    # Try to find a fenced code block first (```python ... ``` or ``` ... ```)
-    match = re.search(r"```(?:python)?\n?(.*?)```", raw_text, re.DOTALL)
-    if match:
-        return match.group(1).strip()
+    # Try to find ALL fenced code blocks and concatenate them
+    blocks = re.findall(r"```(?:python)?\n?(.*?)```", raw_text, re.DOTALL)
+    if blocks:
+        return "\n\n".join(block.strip() for block in blocks if block.strip())
+
+    # Handle unclosed fences (``` at start but no closing ```)
+    if raw_text.strip().startswith("```"):
+        lines = raw_text.strip().splitlines()
+        # Skip the opening ``` line
+        code_lines = lines[1:]
+        return "\n".join(code_lines).strip()
 
     # If no fences, try to find the first 'import' or 'def ' line and take everything from there
     lines = raw_text.splitlines()
+    # Skip common prose lines at the top
     for idx, line in enumerate(lines):
         stripped = line.strip()
         if stripped.startswith(("import ", "from ", "def ", "class ", "@")):
@@ -37,18 +45,33 @@ def extract_code(raw_text):
     return raw_text.strip()
 
 def get_edge_cases(method_name):
+    """Return targeted edge cases based on the method name."""
     method_name = method_name.lower()
 
-    if "add" in method_name or "sum" in method_name:
-        return ["0,0", "-1,-2", "1000000,1000000"]
-    elif "divide" in method_name:
-        return ["1,0", "0,5", "-10,2"]
-    elif "list" in method_name:
-        return ["[]", "[1]", "[None]"]
-    elif "string" in method_name or "str" in method_name:
-        return ["''", "'a'", "'longstring'*100"]
-    else:
-        return ["None", "0"]
+    cases = ["None", "0"]  # always include these basics
+
+    if any(kw in method_name for kw in ("add", "sum", "total", "count", "calc")):
+        cases.extend(["0,0", "-1,-2", "1000000,1000000", "0.5,0.5"])
+    elif any(kw in method_name for kw in ("divide", "div", "ratio")):
+        cases.extend(["1,0", "0,5", "-10,2", "0.1,0.3"])
+    elif any(kw in method_name for kw in ("list", "array", "items", "elements")):
+        cases.extend(["[]", "[1]", "[None]", "[1,2,3]"])
+    elif any(kw in method_name for kw in ("string", "str", "text", "name", "parse", "format")):
+        cases.extend(["''", "'a'", "'hello world'", "'special!@#'"])
+    elif any(kw in method_name for kw in ("get", "fetch", "find", "search", "lookup")):
+        cases.extend(["''", "None", "'nonexistent_key'"])
+    elif any(kw in method_name for kw in ("set", "update", "put", "save", "write")):
+        cases.extend(["''", "None", "{'key': 'value'}"])
+    elif any(kw in method_name for kw in ("delete", "remove", "drop", "clear")):
+        cases.extend(["''", "None", "'nonexistent'"])
+    elif any(kw in method_name for kw in ("path", "file", "dir", "folder")):
+        cases.extend(["''", "'/'", "'/nonexistent/path'", "'.'"])
+    elif any(kw in method_name for kw in ("sort", "order", "rank")):
+        cases.extend(["[]", "[1]", "[3,1,2]", "[1,1,1]"])
+    elif any(kw in method_name for kw in ("bool", "is_", "has_", "check", "valid")):
+        cases.extend(["True", "False", "None", "0", "1"])
+
+    return cases
 
 strategies = load_strategies()
 print(f"Loaded {len(strategies)} prompt strategies.")
