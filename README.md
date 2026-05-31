@@ -1,6 +1,6 @@
 # Autonomous Self-Healing LLM Unit Test Generator
 
-An advanced, production-ready AI engineering pipeline that **automatically generates, executes, validates, and self-repairs unit tests** for Python applications. By combining local Large Language Models (Llama3 via Ollama) with grounded sandbox execution and compiler-grade static analysis, this system achieves a high-resiliency test generation pipeline that autonomously recovers from runtime and logical errors.
+An advanced AI engineering pipeline that **automatically generates, executes, validates, and self-repairs unit tests** for Python applications. By combining local Large Language Models (Llama3 via Ollama) with grounded sandbox execution and compiler-grade static analysis, this system achieves a high-resiliency test generation pipeline that autonomously recovers from runtime and logical errors.
 
 ---
 
