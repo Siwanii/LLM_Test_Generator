@@ -4,14 +4,14 @@ An advanced, production-ready AI engineering pipeline that **automatically gener
 
 ---
 
-## 🚀 Key Engineering Highlights (Recruiter Highlights)
+## Core Architecture & Technical Design
 
-If you are a recruiter or engineering manager, here are the high-impact software engineering patterns implemented in this project:
+This project is built around four primary architectural pillars designed to ensure execution safety, evaluation depth, and system resilience:
 
-* **Self-Healing / Auto-Repair Loop**: Emplements an autonomous agent loop that monitors `pytest` execution failures. When a test crashes, the system parses the execution traceback and diagnostic outputs, constructing dynamic prompt contexts to guide Llama3 to **auto-repair its own code** across up to 3 iterative cycles.
-* **Isolated Sandboxed Execution**: Executes dynamically generated code inside temporary directories to isolate test runs. This sandboxed architecture protects the host environment and simulates clean CI/CD runtime execution.
-* **Compiler-Grade Static Analysis (AST)**: Rather than relying on simple regex matchers, this system parses compiled test code into an **Abstract Syntax Tree (AST)** using Python's standard `ast` module. This programmatically inspects and grades 11 critical edge-case categories (e.g., None, NaN, exceptions, empty dictionaries) to measure logical test depth.
-* **Data-Driven Telemetry Dashboard**: A professional analytical dashboard built with Streamlit and Plotly to visualize pass/fail rates, repair success Sankey charts, edge-case coverage radar graphs, and interactive side-by-side code diffs.
+* **Self-Healing Agent Loop**: Implements an autonomous feedback loop that handles execution failures. If a generated test crashes, the system dynamically parses the traceback diagnostics and constructs targeted prompt contexts to guide the LLM through up to 3 iterative self-repair attempts.
+* **Isolated Sandbox Execution**: Executes all dynamically generated test cases inside isolated temporary sandbox directories, protecting the host system from executing untested code and simulating clean CI/CD runtime states.
+* **Compiler-Grade Static Analysis (AST)**: Utilizes Python's standard `ast` package to programmatically parse test files into Abstract Syntax Trees. This allows the system to programmatically grade 11 critical edge-case categories (like exceptions, empty sequences, and None values) without executing the code.
+* **Interactive Telemetry Dashboard**: A professional analytics interface built with Streamlit and Plotly to monitor pass/fail rates, self-repair flow Sankey graphs, edge-case coverage footprint radar charts, and a side-by-side code differential viewer.
 
 ---
 
