@@ -1,6 +1,6 @@
 # Autonomous Self-Healing LLM Unit Test Generator
 
-An advanced AI engineering pipeline that **automatically generates, executes, validates, and self-repairs unit tests** for Python applications. By combining local Large Language Models (Llama3 via Ollama) with grounded sandbox execution and compiler-grade static analysis, this system achieves a high-resiliency test generation pipeline that autonomously recovers from runtime and logical errors.
+An advanced AI engineering pipeline that **automatically generates, executes, validates, and self-repairs unit tests** for Python applications. By combining local Large Language Models (Llama3 via Ollama) with grounded test execution and AST-based static analysis, this system achieves a high-resiliency test generation pipeline that autonomously recovers from runtime and logical errors.
 
 ---
 
@@ -9,7 +9,7 @@ An advanced AI engineering pipeline that **automatically generates, executes, va
 This project is built around four primary architectural pillars designed to ensure execution safety, evaluation depth, and system resilience:
 
 * **Self-Healing Agent Loop**: Implements an autonomous feedback loop that handles execution failures. If a generated test crashes, the system dynamically parses the traceback diagnostics and constructs targeted prompt contexts to guide the LLM through up to 3 iterative self-repair attempts.
-* **Isolated Sandbox Execution**: Executes all dynamically generated test cases inside isolated temporary sandbox directories, protecting the host system from executing untested code and simulating clean CI/CD runtime states.
+* **Clean Temporary Workspaces**: Runs each generated test with `pytest` in its own temporary directory, so every run starts from a clean state like a CI job. The tests still run on your machine, so this is not a security sandbox.
 * **Compiler-Grade Static Analysis (AST)**: Utilizes Python's standard `ast` package to programmatically parse test files into Abstract Syntax Trees. This allows the system to programmatically grade 11 critical edge-case categories (like exceptions, empty sequences, and None values) without executing the code.
 * **Interactive Telemetry Dashboard**: A professional analytics interface built with Streamlit and Plotly to monitor pass/fail rates, self-repair flow Sankey graphs, edge-case coverage footprint radar charts, and a side-by-side code differential viewer.
 
@@ -23,8 +23,8 @@ The system acts like a real-world developer: it writes a test, runs it, reads th
 2. **Sampling**: We select a random sample of functions to construct a reproducible benchmark. The sample size is fully configurable, allowing you to run any number of test cases depending on your evaluation needs.
 3. **Enrichment**: We match the sampled functions back to the dataset to extract their original source code, fallback paths, and surrounding file context.
 4. **Generation**: We prompt Llama3 to write pytest cases using four different prompting styles (detailed below) at controlled temperatures.
-5. **Sandbox Execution & Self-Repair**: We launch the generated tests inside an isolated sandbox using `pytest`. If a test fails, we capture the exact failure traceback, bundle it with explicit formatting rules (like correct parametrize layouts), and feed it back to Llama3. The model gets **up to 3 attempts** to fix its own code.
-6. **AST-Based Grading**: We use Python’s Abstract Syntax Tree (AST) analyzer to parse the final passing test code. This grades the tests based on whether they actually covered critical boundary cases (like empty lists, negative numbers, division by zero, and exceptions).
+5. **Execution & Self-Repair**: We run each generated test with `pytest` in its own temporary directory. If a test fails, we capture the exact failure traceback, bundle it with explicit formatting rules (like correct parametrize layouts), and feed it back to Llama3. The model gets **up to 3 attempts** to fix its own code.
+6. **AST-Based Grading**: We use Python’s Abstract Syntax Tree (AST) analyzer to parse the final version of every test (the repaired code when a repair was attempted, whether or not it passed). This grades the tests based on whether they actually covered critical boundary cases (like empty lists, negative numbers, division by zero, and exceptions).
 7. **Interactive Dashboard**: We display the results in a beautiful Streamlit web interface, showing pass/fail distributions, Sankey flows of the repair loop, strategy comparisons, and side-by-side code diffs.
 
 ---
@@ -36,7 +36,7 @@ We compare four different strategies to see how much context and prompt structur
 * **Baseline (Name-Only)**: We only give Llama3 the name of the function. It has to guess what the function does and write tests based on that guess. This measures how much the LLM relies on standard naming conventions.
 * **Advanced (Code + Edge Cases)**: We provide the full source code of the function alongside targeted edge cases (like None or large integers). We also explicitly ask it to use `pytest.mark.parametrize` for clean code structure.
 * **Strict Import**: We restrict the model's creativity. We instruct it to output absolutely no markdown fences or conversational text, enforce precise imports, and focus strictly on test execution.
-* **Chain-of-Thought (CoT)**: We ask Llama3 to slow down and think. It is instructed to write a Python comment block analyzing the function's behavior and planning 5 key edge cases *before* it writes any test code. This significantly reduces hallucinations and syntax slips.
+* **Chain-of-Thought (CoT)**: We ask Llama3 to slow down and think. It is instructed to write a Python comment block analyzing the function's behavior and planning 5 key edge cases *before* it writes any test code. In our evaluation, CoT tied for the highest pass rate (28 of 34 tests) with zero syntax errors, but it had the lowest edge-case coverage (8.6%).
 
 ---
 
@@ -93,13 +93,13 @@ python3 scripts/generate_tests_llm_advanced.py
 ```
 
 ### Step 5: Execute & Repair
-Run the tests in a sandbox and let the self-repair loop fix any failing runs:
+Run the tests in temporary directories and let the self-repair loop fix any failing runs:
 ```bash
 python3 scripts/execute_generated_tests.py
 ```
 
 ### Step 6: Grade the Tests
-Score the passing tests using our AST edge-case analyzer:
+Score the final version of each test using our AST edge-case analyzer:
 ```bash
 python3 scripts/edge_case_scoring.py
 ```
@@ -126,13 +126,13 @@ A primary engineering challenge with raw LLM-generated code is its tendency to f
 * This self-healing pipeline directly raised the final, compilable passing rate of our test suites to **59.5%** (**81 out of 136 tests** completely verified and passing).
 
 ### 2. Flawless Syntactic Compilation (97.8% Success)
-Out of 136 raw generated files, only **3 tests** encountered compilation or syntax errors. This proves that contemporary LLMs possess an exceptional **97.8% syntactic accuracy** in Python. The vast majority of failures are confined entirely to logical discrepancies (such as asserting against empty stubs returning `None`) rather than raw syntax issues, proving that the runtime sandboxed executor is the exact tool needed to bridge the gap.
+Out of 136 raw generated files, only **3 tests** encountered compilation or syntax errors. That is **97.8% syntactic validity** for Llama3 on this benchmark. Most failures came from logical discrepancies (such as asserting against empty stubs returning `None`) rather than syntax issues, which is why running the tests and feeding the errors back matters more than checking syntax alone.
 
 ### 3. Data-Driven Prompt Strategy Optimization
-Our AST-based code analyzer programmatically graded the logical depth of each passing test suite across 11 critical edge-case categories:
-* **Prompt Strategy Impact**: Enforcing structured target edge cases and parametrization (Advanced strategy) successfully drove deep edge-case coverage to a top average of **40.3%**.
-* **LLM Coverage Patterns**: The models naturally showed strong proficiency in writing assertions for **None checks** (55.8% frequency) and **zero boundaries** (42.6%).
-* **Logical Blindspots**: The evaluation revealed that models rarely test for **large numeric scale** (3.6%) or **unicode edge cases** (0.7%) without explicit developer directives, proving the necessity of hybrid developer-in-the-loop strategies.
+Our AST-based code analyzer programmatically graded the logical depth of all 136 final test files across 11 critical edge-case categories:
+* **Prompt Strategy Impact**: Enforcing structured target edge cases and parametrization (Advanced strategy) successfully drove deep edge-case coverage to a top average of **40.4%**.
+* **LLM Coverage Patterns**: The models naturally showed strong proficiency in writing assertions for **None checks** (55.9% frequency) and **zero boundaries** (42.6%).
+* **Logical Blindspots**: The evaluation revealed that models rarely test for **large numeric scale** (3.7%) or **unicode edge cases** (0.7%) without explicit developer directives, suggesting the value of developer-in-the-loop review.
 
 ---
 
